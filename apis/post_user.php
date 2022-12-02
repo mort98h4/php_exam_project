@@ -25,6 +25,8 @@ try {
 try {
     $db = new DB;
     $db = $db->connect();
+    $db->beginTransaction();
+
     $query = $db->prepare('INSERT INTO users (user_first_name, user_last_name, user_email, user_password, user_is_admin) VALUES (:first_name, :last_name, :email, :password, :is_admin)');
     $query->bindValue(':first_name', $user->firstName());
     $query->bindValue(':last_name', $user->lastName());
@@ -32,7 +34,18 @@ try {
     $query->bindValue(':password', $user->password());
     $query->bindValue(':is_admin', 0);
     $query->execute();
+
+    $user_id = $db->lastInsertId();
+    $query = $db->prepare('INSERT INTO sessions (session_user_id) VALUES (:user_id)');
+    $query->bindValue(':user_id', $user_id);
+    $query->execute();
+
+    $query = $db->prepare('SELECT * FROM users WHERE user_id = :user_id');
+    $query->bindValue(':user_id', $user_id);
+    $query->execute();
     $_SESSION = $query->fetch();
+
+    $db->commit();
     _respond('User created', 201);
 
 } catch(Exception $ex) {
