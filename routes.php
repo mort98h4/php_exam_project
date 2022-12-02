@@ -20,6 +20,7 @@ get('/sign-up', 'views/sign-up.php');
 // APIS
 get('/users', 'apis/get_users');
 post('/user', 'apis/post_user');
+post('/login', 'apis/post_session');
 
 
 
