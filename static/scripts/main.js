@@ -9,7 +9,6 @@ function formValidation(callback) {
 }
 
 async function postUser(form) {
-    console.log(form);
     const response = await fetch('/user', {
         method: 'POST',
         body: new FormData(form)
@@ -21,4 +20,18 @@ async function postUser(form) {
     }
 
     window.location.href="/";    
+}
+
+async function postSession(form) {
+    const response = await fetch('/login', {
+        method: 'POST',
+        body: new FormData(form)
+    });
+    if (response.status !== 200) {
+        const error = await response.json();
+        console.log(error);
+        return;
+    }
+
+    window.location.href="/";
 }
