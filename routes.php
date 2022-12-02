@@ -9,7 +9,7 @@ require_once __DIR__.'/router.php';
 // Static GET
 // In the URL -> http://localhost
 // The output -> Index
-get('/',                            'views/index.php');
+get('/', 'views/index.php');
 // get('/10-28/item/$id',                    'views/item');
 // get('/10-28/$gender/shoes/$brand/$size',  'views/product');
 // get('/10-28/test/$word', function($word){
@@ -17,7 +17,8 @@ get('/',                            'views/index.php');
 // });
 
 // APIS
-// post('/item', 'apis/create_item');
+get('/users', 'apis/get_users');
+post('/user', 'apis/post_user');
 
 
 
