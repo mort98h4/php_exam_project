@@ -22,6 +22,7 @@ get('/users', 'apis/get_users');
 post('/user', 'apis/post_user');
 post('/login', 'apis/post_session');
 
+delete('/logout/$user_id', 'apis/delete_session');
 
 
 // For GET or POST
