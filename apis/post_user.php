@@ -40,8 +40,10 @@ try {
     $query->bindValue(':user_id', $user_id);
     $query->execute();
 
-    $query = $db->prepare('SELECT * FROM users WHERE user_id = :user_id');
+    $session_id = $db->lastInsertId();
+    $query = $db->prepare('SELECT * FROM user_sessions WHERE user_id = :user_id AND session_id = :session_id');
     $query->bindValue(':user_id', $user_id);
+    $query->bindValue(':session_id', $session_id);
     $query->execute();
     $_SESSION = $query->fetch();
 
