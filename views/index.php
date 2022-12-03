@@ -3,9 +3,20 @@
 $title = 'Home';
 include_once __DIR__ . '/templates/header.php';
 ?>
-
+<nav>
+    <?php
+    if (!$_SESSION) {
+    ?>
+    <button>Log in</button>
+    <?php
+    } else {
+    ?>
+    <button data-id="<?= out($_SESSION['user_id']) ?>" onclick="deleteSession()">Log out</button>
+    <?php
+    }
+    ?>
+</nav>
 <h1>Anarkist</h1>
-
 <section id="login_modal">
     <button onclick="">X</button>
     <form method="POST" action="/login">
@@ -23,9 +34,6 @@ include_once __DIR__ . '/templates/header.php';
 </section>
 
 <?php 
-    if (isset($_SESSION)) {
-        echo json_encode($_SESSION);
-    }
 ?>
 
 <?php 
