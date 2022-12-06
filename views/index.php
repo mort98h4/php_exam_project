@@ -23,8 +23,8 @@ include_once __DIR__ . '/templates/header.php';
             <img class="self-center" src="./public/images/anarkist_logo_light.png" alt="Anarkist logo" />
         </div>
         <div class="h-full absolute flex gap-2">
-            <button onclick="toggleModal()" data-target="#login_modal" class="self-center min-w-[150px] bg-black border-2 border-white text-center py-2 px-4">Log in</button>
-            <a href="/sign-up" class="self-center min-w-[150px] bg-black border-2 border-white text-center py-2 px-4">Sign up</a>
+            <button onclick="toggleModal()" data-target="#login_modal" class="btn">Log in</button>
+            <a href="/sign-up" class="btn">Sign up</a>
         </div>
     </section>
 </main>
