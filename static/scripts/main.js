@@ -8,6 +8,11 @@ function formValidation(callback) {
     }
 }
 
+function toggleModal() {
+    const modalId = event.target.dataset.target;
+    document.querySelector(modalId).classList.toggle('show');
+}
+
 async function postUser(form) {
     const response = await fetch('/user', {
         method: 'POST',
