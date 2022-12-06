@@ -37,6 +37,10 @@ body {
     @apply hover:opacity-100;
 }
 
+.btn-close {
+    @apply opacity-70 transition-opacity hover:opacity-100;
+}
+
 input.dynamic-input {
     @apply w-full h-12 bg-gray-900 px-2 outline-none border-y-2 border-gray-900;
     transition: border-bottom-color .15s ease-in-out;

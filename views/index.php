@@ -29,11 +29,13 @@ include_once __DIR__ . '/templates/header.php';
     </section>
 </main>
 <section id="login_modal" class="modal">
-    <div class="h-full w-full absolute top-0 left-0" onclick="toggleModal()" data-target="#login_modal"></div>
-    <div class="w-1/3 p-4 bg-black flex flex-col justify-between">
+    <div class="h-full w-full absolute top-0 left-0 z-10" onclick="toggleModal()" data-target="#login_modal"></div>
+    <div class="relative z-20 w-1/3 p-4 bg-black flex flex-col justify-between border-2 border-white">
         <div class="w-full flex justify-between items-center mb-4">
             <h2 class="text-2xl font-medium">Log in</h2>
-            <button onclick="toggleModal()" data-target="#login_modal">X</button>
+            <button onclick="toggleModal()" data-target="#login_modal" class="btn-close">
+                <i class="fa-sharp fa-solid fa-xmark pointer-events-none text-2xl"></i>
+            </button>
         </div>
         <form method="POST" action="/login" class="w-full flex justify-center">
             <div class="h-full w-3/5 flex flex-wrap flex-col items-center">
@@ -53,7 +55,7 @@ include_once __DIR__ . '/templates/header.php';
                 <div class="">
                     <span class=""></span>
                 </div>
-                <button class="btn mt-4" type="submit" onclick="formValidation(postSession)">Log in</button>
+                <button class="btn my-4" type="submit" onclick="formValidation(postSession)">Log in</button>
             </div>
         </form>
     </div>
