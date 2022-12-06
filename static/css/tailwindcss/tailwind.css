@@ -1,3 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@300;400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+}
+
+body {
+    color: white;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+body {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.modal {
+    @apply h-screen w-screen absolute top-0 justify-center items-center bg-black bg-opacity-50 hidden;
+}
+
+.modal.show {
+    @apply flex;
+}
+
+.btn {
+    @apply self-center min-w-[150px] bg-black border-2 border-white text-center py-2 px-4;
+}
+
+input.dynamic-input {
+    @apply w-full h-12 bg-gray-900 px-2 outline-none border-y-2 border-gray-900;
+    transition: border-bottom-color .15s ease-in-out;
+}
+
+input.dynamic-input:focus {
+    @apply border-b-white; 
+}
+
+input.dynamic-input:not(:focus):not(:placeholder-shown):invalid {
+    @apply border-b-red-600;
+}
+
+input.dynamic-input:not(:focus):valid {
+    @apply border-b-green-600;
+}
+
+.label-container {
+    @apply absolute h-full w-full top-0 left-0 flex items-center pointer-events-none;
+}
+
+input.dynamic-input ~ .label-container > .dynamic-label {
+    @apply px-2 top-1/2 left-0 font-light pointer-events-none;
+    transition: font-size .15s ease-in-out, transform .15s ease-in-out, opacity .15s ease-in-out;
+}
+
+input.dynamic-input:not(:placeholder-shown) ~ .label-container > .dynamic-label {
+    font-size: .6rem;
+    line-height: 1rem;
+    transform: translateY(-14px);
+    opacity: .6;
+}
