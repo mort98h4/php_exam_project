@@ -34,7 +34,8 @@ async function postSession(form) {
     });
     if (response.status !== 200) {
         const error = await response.json();
-        console.log(error);
+        form.querySelector('.hint-container').classList.remove('hidden');
+        form.querySelector('.hint').textContent = error.info;
         return;
     }
 
