@@ -43,7 +43,7 @@ body {
 }
 
 input.dynamic-input {
-    @apply w-full h-12 bg-gray-900 px-2 outline-none border-y-2 border-gray-900;
+    @apply w-full h-12 bg-gray-900 px-2 outline-none border-y-2 border-gray-900 mb-1;
     transition: border-bottom-color .15s ease-in-out;
 }
 
@@ -83,4 +83,52 @@ input.dynamic-input:not(:placeholder-shown) ~ .label-container > .dynamic-label 
     line-height: 1rem;
     transform: translateY(-14px);
     opacity: .6;
+}
+
+:not(.hint-container) .hint {
+    @apply pl-2 pb-4 text-sm w-full text-gray-400;
+}
+
+.burger {
+    @apply relative w-[24px] h-[24px];
+}
+
+.burger i {
+    @apply pointer-events-none absolute;
+    transition: opacity .15s ease-in-out, transform .15s ease-in-out;
+}
+
+.burger .fa-bars {
+    @apply text-xl top-0 right-0 opacity-70;
+}
+
+.burger .fa-xmark {
+    @apply text-2xl top-[-0.1rem] right-[0.1rem] opacity-0;
+}
+
+.burger.show .fa-bars {
+    @apply opacity-0;
+    transform: rotate(360deg);
+}
+
+.burger.show .fa-xmark {
+    @apply opacity-70;
+    transform: rotate(360deg);
+}
+
+.burger:not(.show):hover .fa-bars, .burger.show:hover .fa-xmark {
+    @apply opacity-100;
+}
+
+.nav-link {
+    @apply uppercase font-medium tracking-widest cursor-pointer hover:underline;
+}
+
+.menu {
+    transition: transform .15s ease-in-out;
+    transform: translateY(-100%);
+}
+
+.menu.show {
+    transform: translateY(0);
 }
