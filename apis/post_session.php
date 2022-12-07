@@ -26,7 +26,7 @@ try {
     $query->execute();
     
     $response = $query->fetch();
-    if (!$response) _respond('E-mail is not correct.', 400);
+    if (!$response) _respond('E-mail does not exist.', 400);
 
     $db_password = $response['user_password'];
     if (!password_verify($_POST['password'], $db_password)) {
