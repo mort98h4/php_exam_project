@@ -35,10 +35,11 @@ body {
     @apply self-center min-w-[150px] bg-black border-2 border-white text-center font-medium tracking-widest uppercase py-2 px-4 opacity-70;
     @apply transition-opacity;
     @apply hover:opacity-100;
+    @apply focus:opacity-100 focus-visible:outline-none;
 }
 
 .btn-close {
-    @apply opacity-70 transition-opacity hover:opacity-100;
+    @apply opacity-70 transition-opacity hover:opacity-100 focus:opacity-100 focus-visible:outline-none;
 }
 
 input.dynamic-input {
@@ -56,6 +57,16 @@ input.dynamic-input:not(:focus):not(:placeholder-shown):invalid {
 
 input.dynamic-input:not(:focus):valid {
     @apply border-b-green-600;
+}
+
+/* Change the white to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px rgb(17 24 39) inset !important;
+    -webkit-text-fill-color: rgb(255, 255, 255);
+    claret-color: rgb(255, 255, 255); 
 }
 
 .label-container {
