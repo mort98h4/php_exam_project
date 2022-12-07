@@ -13,6 +13,11 @@ function toggleModal() {
     document.querySelector(modalId).classList.toggle('show');
 }
 
+function toggleBurger() {
+    document.querySelector(".burger").classList.toggle('show');
+    document.querySelector(".menu").classList.toggle('show');
+}
+
 async function postUser(form) {
     const response = await fetch('/user', {
         method: 'POST',
