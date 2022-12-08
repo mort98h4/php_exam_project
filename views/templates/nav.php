@@ -10,18 +10,13 @@ $validSession = _validateSession($_SESSION);
             <img class="" src="./public/images/anarkist_logo_light.png" alt="Anarkist logo" />
         </a>
         <div class="menu col-span-6 sm:col-span-8 xl:col-span-10 flex justify-center items-center gap-4">
-            <?php
-            if (!$validSession) {
-            ?>
+            <a class="nav-link" href="/tapwall">Tapwall</a>
+            <?php if (!$validSession) { ?>
             <a class="nav-link" href="/sign-up">Sign up</a>
             <a class="nav-link" onclick="toggleModal()" data-target="#login_modal">Log in</a>
-            <?php
-            } else {
-            ?>
+            <?php } else { ?>
             <a class="nav-link" data-id="<?= out($_SESSION['user_id']) ?>" onclick="deleteSession()">Log out</a>
-            <?php
-            }
-            ?>
+            <?php } ?>
         </div>
         <div class="col-span-3 sm:col-span-2 xl:col-span-1 flex justify-end items-center">
             <button onclick="toggleBurger()" class="burger">
