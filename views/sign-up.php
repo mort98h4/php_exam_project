@@ -6,8 +6,8 @@ require_once __DIR__ . '/templates/header.php';
 require_once __DIR__ . '/templates/nav.php';
 ?>
 
-<main class="container mx-auto min-h-screen p-4 flex justify-center items-center flex-wrap">
-    <header class="w-full inline-flex justify-center">
+<main class="container mt-12 mx-auto p-4 flex justify-center flex-wrap">
+    <header class="w-full inline-flex justify-center mb-4">
         <h1 class="w-full sm:w-3/5 lg:w-2/5 text-3xl font-medium">Sign up</h1>
     </header>
     <form method="POST" action="/user" class="w-full sm:w-3/5 lg:w-2/5 flex flex-col items-center self-start">
