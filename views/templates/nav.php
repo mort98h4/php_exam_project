@@ -1,6 +1,6 @@
 <?php 
 include_once __DIR__ . '/../../utils.php';
-$validSession = _validateSession($_SESSION);
+$session = _validateSession($_SESSION);
 
 ?>
 
@@ -11,7 +11,7 @@ $validSession = _validateSession($_SESSION);
         </a>
         <div class="menu col-span-6 sm:col-span-8 xl:col-span-10 flex justify-center items-center gap-4">
             <a class="nav-link" href="/tapwall">Tapwall</a>
-            <?php if (!$validSession) { ?>
+            <?php if (!$session) { ?>
             <a class="nav-link" href="/sign-up">Sign up</a>
             <a class="nav-link" onclick="toggleModal()" data-target="#login_modal">Log in</a>
             <?php } else { ?>
