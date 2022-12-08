@@ -1,7 +1,6 @@
 <?php
 
-define('_NAME_MIN_LEN', 2);
-define('_NAME_MAX_LEN', 30);
+include_once __DIR__ . '/../utils.php';
 
 class User {
     private const NAME_REGEX = '/^[a-zA-ZæøåñçáéíóúàèìòùäëïöüâêîôûÆØÅÑÇÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÂÊÎÔÛ \-]+$/i';
@@ -55,7 +54,7 @@ class User {
     }
 
     public function nameIsValid(string $name): bool {
-        return ((strlen($name) >= _NAME_MIN_LEN) && (strlen($name) < _NAME_MAX_LEN) && (preg_match(self::NAME_REGEX, $name)));
+        return ((strlen($name) >= _STR_MIN_LEN) && (strlen($name) <= _STR_MAX_LEN) && (preg_match(self::NAME_REGEX, $name)));
     }
 
     public function emailIsValid(string $email): bool {
