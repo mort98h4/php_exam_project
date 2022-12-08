@@ -9,7 +9,9 @@ try {
         _respond('Invalid e-mail.', 400);
     }
 
-    // VALIDATE PASSWORD
+    if (!$user->setPassword($_POST['password'], $_POST['password'])) {
+        _respond('Invalid password.', 400);
+    }
 
 } catch(Exception $ex) {
     _respond($ex, 500);
