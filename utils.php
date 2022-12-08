@@ -1,5 +1,8 @@
 <?php
 
+define('_STR_MIN_LEN', 2);
+define('_STR_MAX_LEN', 30);
+
 include_once __DIR__ . '/classes/DBConnection.php';
 
 function _respond(string $message='', int $status=200) {
@@ -47,6 +50,21 @@ function _validateSession(array $session) {
         }
     } catch (Exception $ex) {
         session_destroy();
+        _respond('Server error.', 500);
+    }
+}
+
+function _getTapwall(): array {
+    try{
+        $db = new DB;
+        $db = $db->connect();
+    
+        $query = $db->prepare('SELECT * FROM beers_and_breweries WHERE beer_is_active = 1');
+        $query->execute();
+    
+        $beers = $query->fetchAll();
+        return $beers;
+    } catch (Exception $ex) {
         _respond('Server error.', 500);
     }
 }
