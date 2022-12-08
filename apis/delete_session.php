@@ -15,7 +15,6 @@ try {
     $query->execute();
 
     session_destroy();
-    $_SESSION = false;
     _respond('', 204);
     // _redirect('/');
 } catch(Exception $ex) {

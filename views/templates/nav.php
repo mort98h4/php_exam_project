@@ -1,3 +1,9 @@
+<?php 
+include_once __DIR__ . '/../../utils.php';
+$validSession = _validateSession($_SESSION);
+
+?>
+
 <nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-sm">
     <div class="container mx-auto px-4 py-2 grid grid-rows-1 grid-cols-12">
         <a href="/" class="col-span-3 sm:col-span-2 xl:col-span-1">
@@ -5,7 +11,7 @@
         </a>
         <div class="menu col-span-6 sm:col-span-8 xl:col-span-10 flex justify-center items-center gap-4">
             <?php
-            if (!$_SESSION) {
+            if (!$validSession) {
             ?>
             <a class="nav-link" href="/sign-up">Sign up</a>
             <a class="nav-link" onclick="toggleModal()" data-target="#login_modal">Log in</a>
