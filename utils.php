@@ -25,7 +25,7 @@ function _validateSession(array $session) {
         !isset($session['user_first_name']) ||
         !isset($session['user_last_name']) ||
         !isset($session['user_email']) ||
-        !isset($session['user_is_admin']) ||
+        !isset($session['user_role']) ||
         !isset($session['session_id'])
     ) {
         session_destroy();
