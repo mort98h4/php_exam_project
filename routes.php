@@ -22,6 +22,7 @@ get('/tapwall', 'views/tapwall.php');
 get('/users', 'apis/get_users');
 post('/user', 'apis/post_user');
 post('/login', 'apis/post_session');
+post('/beer', 'apis/post_beer');
 
 delete('/logout/$user_id', 'apis/delete_session');
 
