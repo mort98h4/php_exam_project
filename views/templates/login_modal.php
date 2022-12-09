@@ -8,21 +8,21 @@
             </button>
         </div>
         <form method="POST" action="/login" class="w-full flex justify-center">
-            <div class="h-full w-3/5 flex flex-wrap flex-col items-center">
-                <div class="relative w-full mb-4">
+            <div class="w-3/5 flex gap-4 flex-wrap justify-center">
+                <div class="relative w-full">
                     <input class="dynamic-input" placeholder=" " type="email" id="email" name="email" required pattern='^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))' />
                     <div class="label-container">
                         <label for="email" class="dynamic-label">E-mail</label>
                     </div>
                 </div>
-                <div class="relative w-full mb-4">
+                <div class="relative w-full">
                     <input class="dynamic-input" placeholder=" " type="password" id="password" name="password" required  pattern='^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}' />
                     <div class="label-container">
                         <label for="password" class="dynamic-label">Password</label>
                     </div>
                 </div>
-                <div class="hint-container hidden">
-                    <span class="hint text-red-600"></span>
+                <div class="error-container hidden">
+                    <span class="text-red-600"></span>
                 </div>
                 <button class="btn my-4" type="submit" onclick="formValidation(postSession)">Log in</button>
             </div>
