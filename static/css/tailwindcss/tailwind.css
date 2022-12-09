@@ -4,6 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+    .form-control {
+        width: calc(50% - .5rem);
+    }
+}
+
 * {
     font-family: 'Barlow Semi Condensed', sans-serif;
 }

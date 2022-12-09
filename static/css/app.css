@@ -795,6 +795,10 @@ video {
           backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
 }
 
+.form-control {
+  width: calc(50% - .5rem);
+}
+
 * {
   font-family: 'Barlow Semi Condensed', sans-serif;
 }
@@ -1173,6 +1177,10 @@ textarea.dynamic-textarea:not(:placeholder-shown) ~ .label-container > .dynamic-
 @media (min-width: 1024px){
   .lg\:w-2\/5{
     width: 40%;
+  }
+
+  .lg\:form-control {
+    width: calc(50% - .5rem);
   }
 }
 
