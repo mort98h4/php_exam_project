@@ -1,6 +1,10 @@
 <?php 
 include_once __DIR__ . '/../../utils.php';
-$session = _validateSession($_SESSION);
+$validSession = _validateSession($_SESSION);
+if ($validSession) {
+    $admin = $_SESSION['user_role'] === '1' ? true : false;
+    $editor = $_SESSION['user_role'] === '2' ? true : false; 
+}
 
 ?>
 
@@ -11,7 +15,10 @@ $session = _validateSession($_SESSION);
         </a>
         <div class="menu col-span-6 sm:col-span-8 xl:col-span-10 flex justify-center items-center gap-4">
             <a class="nav-link" href="/tapwall">Tapwall</a>
-            <?php if (!$session) { ?>
+            <?php if ($validSession && $admin) { ?>
+            <a class="nav-link" href="/admin">Admin panel</a>
+            <?php } ?>
+            <?php if (!$validSession) { ?>
             <a class="nav-link" href="/sign-up">Sign up</a>
             <a class="nav-link" onclick="toggleModal()" data-target="#login_modal">Log in</a>
             <?php } else { ?>
