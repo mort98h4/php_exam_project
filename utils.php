@@ -107,3 +107,18 @@ function _getTapwall(): array {
         _respond('Server error.', 500);
     }
 }
+
+function _getBreweries(): array {
+    try {
+        $db = new DB;
+        $db = $db->connect();
+
+        $query = $db->prepare('SELECT * FROM breweries');
+        $query->execute();
+
+        $breweries = $query->fetchAll();
+        return $breweries;
+    } catch (Exception $ex) {
+        _respond('Server error.', 500);
+    }
+}
