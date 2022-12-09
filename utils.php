@@ -2,6 +2,8 @@
 
 define('_STR_MIN_LEN', 2);
 define('_STR_MAX_LEN', 30);
+define('_IMG_TARGET_DIR', 'public/images/uploads/');
+define('_IMG_FORMATS', ['image/png', 'image/jpeg', 'image/jpg']);
 
 include_once __DIR__ . '/classes/DBConnection.php';
 
@@ -52,6 +54,43 @@ function _validateSession(array $session) {
         session_destroy();
         _respond('Server error.', 500);
     }
+}
+
+function _validateImage($image) {
+    if (!isset($image)) {
+        _respond('Please provide an image.', 400);
+    } 
+    if ($image['error'] === UPLOAD_ERR_INI_SIZE) {
+        _respond('Image too large', 400);
+    }
+
+    $imgTmpName = $image['tmp_name'];
+    $targetFile = _IMG_TARGET_DIR . basename($image['name']);
+    $imgFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+    $imgMime = mime_content_type($imgTmpName);
+
+    if (!in_array($imgMime, _IMG_FORMATS)) {
+        _respond('File format not allowed.', 400);
+    }
+
+    $rndImgName = bin2hex(random_bytes(16));
+    switch($imgMime) {
+        case 'image/png':
+            $rndImgName .= '.png';
+            break;
+        case 'image/jpeg':
+            $rndImgName .= '.jpeg';
+            break;
+        case 'image/jpg':
+            $rndImgName .= '.jpg';
+            break;
+    }
+
+    if (!move_uploaded_file($imgTmpName, _IMG_TARGET_DIR . $rndImgName)) {
+        _respond('Server error.', 500);
+    }
+
+    return $rndImgName;
 }
 
 function _getTapwall(): array {
