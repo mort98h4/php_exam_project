@@ -7,7 +7,7 @@ class Beer {
     private const MAX_EBC = 150;
     private const MIN_VOL = 0;
     private const IMG_REGEX = '/^(([0-9a-f]{32})*\\.(jpg|jpeg||png))$/i';
-    private const TAPWALL_MIN = 1;
+    private const TAPWALL_MIN = 0;
     private const TAPWALL_MAX = 29;
     private const IS_ACTIVE_OPTIONS = [0, 1];
     private const MIN_PRICE = 0;
