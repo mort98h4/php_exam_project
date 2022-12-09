@@ -3,16 +3,15 @@
 include_once __DIR__ . '/../utils.php';
 
 class Beer {
-    private const DATE_FORMAT = 'd/m/Y';
-    // Temp. Breweries
-    private const BREWERIES = [1=>'Anarkist', 2=>'People Like Us', 3=>'Too Old To Die Young'];
     private const MAX_IBU = 182;
     private const MAX_EBC = 150;
     private const MIN_VOL = 0;
     private const IMG_REGEX = '/^(([0-9a-f]{32})*\\.(jpg|jpeg||png))$/i';
-    private const TAPWALL_MIN = 0;
+    private const TAPWALL_MIN = 1;
     private const TAPWALL_MAX = 29;
     private const IS_ACTIVE_OPTIONS = [0, 1];
+    private const MIN_PRICE = 0;
+    private const MAX_DESCRIPTION = 400;
 
     private int $breweryId;
     private string $style;
@@ -20,16 +19,17 @@ class Beer {
     private int $IBU;
     private int $EBC;
     private string $volume;
+    private string $description;
     private string $image;
     private int $createdBy;
     private int $createdAt;
     private int $updatedAt;
     private int $isActive;
     private int $tapwallNo;
+    private float $price;
 
     public function setBrewery(int $id): bool {
-        // This might need to change when using an actual db
-        if (($id < 1) && ($id <= count(self::BREWERIES))) {
+        if (!$this->idIsValid($id)) {
             return false;
         } else {
             $this->breweryId = $id;
@@ -82,6 +82,15 @@ class Beer {
         }
     }
 
+    public function setDescription(string $description): bool {
+        if (!$this->descriptionIsValid($description)) {
+            return false;
+        } else {
+            $this->description = $description;
+            return true;
+        }
+    }
+
     public function setImageStr(string $imageStr): bool {
         if (!$this->imageStrIsValid($imageStr)) {
             return false;
@@ -119,7 +128,7 @@ class Beer {
     }
 
     public function setIsActive(int $bool): bool {
-        if (!$this->isActiveIsValid) {
+        if (!$this->isActiveIsValid($bool)) {
             return false;
         } else {
             $this->isActive = $bool;
@@ -132,6 +141,15 @@ class Beer {
             return false;
         } else {
             $this->tapwallNo = $no;
+            return true;
+        }
+    }
+
+    public function setPrice(string $price): bool {
+        if (!$this->priceIsValid($price)) {
+            return false;
+        } else {
+            $this->price = $price;
             return true;
         }
     }
@@ -151,6 +169,10 @@ class Beer {
     public function volIsValid(string $volume): bool {
         $floatVolume = floatval($volume);
         return ((is_numeric($volume)) && ($floatVolume >= floatval(self::MIN_VOL)));
+    }
+
+    public function descriptionIsValid(string $description): bool {
+        return ((strlen($description) >= 0) && (strlen($description) <= self::MAX_DESCRIPTION));
     }
 
     public function imageStrIsValid(string $imageStr): bool {
@@ -177,21 +199,25 @@ class Beer {
         return ((is_numeric($no)) && ($no >= self::TAPWALL_MIN) && ($no <= self::TAPWALL_MAX));
     }
 
-    public function __toString()
-    {
-        return <<<BEER
-            Brewery ID: {$this->breweryId} <br>
-            Style: {$this->style} <br>
-            Name: {$this->name} <br>
-            IBU: {$this->IBU} <br>
-            EBC: {$this->EBC} <br>
-            Volume: {$this->volume} <br>
-            Image: {$this->image} <br>
-            Created by: {$this->createdBy} <br>
-            Created at: {$this->createdAt} <br>
-            Updated at: {$this->updatedAt} <br>
-        BEER;
+    public function priceIsValid(string $price): bool {
+        return ((is_numeric($price)) && ($price > self::MIN_PRICE));
     }
+
+    // public function __toString()
+    // {
+    //     return <<<BEER
+    //         Brewery ID: {$this->breweryId} <br>
+    //         Style: {$this->style} <br>
+    //         Name: {$this->name} <br>
+    //         IBU: {$this->IBU} <br>
+    //         EBC: {$this->EBC} <br>
+    //         Volume: {$this->volume} <br>
+    //         Image: {$this->image} <br>
+    //         Created by: {$this->createdBy} <br>
+    //         Created at: {$this->createdAt} <br>
+    //         Updated at: {$this->updatedAt} <br>
+    //     BEER;
+    // }
 
     public function volume(): string {
         return (isset($this->volume) ? $this->volume . '%' : '');
