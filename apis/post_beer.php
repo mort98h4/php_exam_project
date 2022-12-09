@@ -45,7 +45,7 @@ try {
         _respond('Invalid description.', 400);
     }
 
-    $image = isset($_FILES['image']) ? _validateImage($_FILES['image']) : '';
+    $image = ((isset($_FILES['image'])) && $_FILES['image']['tmp_name'] !== '') ? _validateImage($_FILES['image']) : '';
     if ((!$image === '') && (!$beer->setImageStr($image))) {
         _respond('Invalid image name.', 400);
     }
@@ -73,7 +73,6 @@ try {
     }
 
     if (!$createdBy === intval($_SESSION['user_id'])) {
-        $db->rollBack();
         _respond('Unauthorized attempt 3.', 401);
     }
 
