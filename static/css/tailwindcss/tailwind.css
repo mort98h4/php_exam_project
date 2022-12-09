@@ -42,21 +42,48 @@ body {
     @apply opacity-70 transition-opacity hover:opacity-100 focus:opacity-100 focus-visible:outline-none;
 }
 
+.form-control {
+    width: calc(50% - .5rem);
+}
+
+.form-control-full {
+    width: 100%;
+}
+
+[type='file'] {
+    visibility: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
 input.dynamic-input {
-    @apply w-full h-12 bg-gray-900 px-2 outline-none border-y-2 border-gray-900 mb-1;
+    @apply w-full h-12 bg-gray-900 px-2 pt-1 outline-none border-y-2 border-gray-900 mb-1;
     transition: border-bottom-color .15s ease-in-out;
 }
 
-input.dynamic-input:focus {
-    @apply border-b-white; 
+textarea.dynamic-textarea {
+    @apply w-full h-24 bg-gray-900 px-2 py-3 outline-none border-y-2 border-gray-900 mb-1;
+    transition: border-bottom-color .15s ease-in-out;
 }
 
-input.dynamic-input:not(:focus):not(:placeholder-shown):invalid {
+select.dynamic-select {
+    @apply w-full h-12 bg-gray-900 pl-1 pr-4 pt-1 outline-none border-y-2 border-gray-900 mb-1;
+    transition: border-bottom-color .15s ease-in-out;
+}
+
+input.dynamic-input:not(:focus):not(:placeholder-shown):invalid, 
+select.dynamic-select.invalid {
     @apply border-b-red-600;
 }
 
-input.dynamic-input:not(:focus):valid {
+input.dynamic-input:not(:focus):valid,
+textarea.dynamic-textarea:not(:placeholder-shown):not(:focus):valid, 
+select.dynamic-select.valid {
     @apply border-b-green-600;
+}
+
+input.dynamic-input:focus, textarea.dynamic-textarea:focus, select.dynamic-select:focus, select.dynamic-select:hover {
+    @apply border-b-white; 
 }
 
 /* Change the white to any color */
@@ -69,24 +96,62 @@ input:-webkit-autofill:active{
     claret-color: rgb(255, 255, 255); 
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .label-container {
     @apply absolute h-full w-full top-0 left-0 flex items-center pointer-events-none;
 }
 
-input.dynamic-input ~ .label-container > .dynamic-label {
-    @apply px-2 top-1/2 left-0 font-light pointer-events-none;
+textarea.dynamic-textarea ~ .label-container {
+    @apply items-start pt-[0.85rem];
+}
+
+.image-label {
+    @apply cursor-pointer;
+}
+
+.image-label i {
+    @apply opacity-70 mr-2 transition-opacity;
+}
+
+.image-label:hover i, .image-label:focus i {
+    @apply opacity-100;
+}
+
+input.dynamic-input ~ .label-container > .dynamic-label,
+select.dynamic-select ~ .label-container > .dynamic-label,
+textarea.dynamic-textarea ~ .label-container > .dynamic-label {
+    @apply px-2 font-light pointer-events-none;
     transition: font-size .15s ease-in-out, transform .15s ease-in-out, opacity .15s ease-in-out;
 }
 
-input.dynamic-input:not(:placeholder-shown) ~ .label-container > .dynamic-label {
+input.dynamic-input:not(:placeholder-shown) ~ .label-container > .dynamic-label,
+select.dynamic-select.valid ~ .label-container > .dynamic-label {
     font-size: .6rem;
     line-height: 1rem;
     transform: translateY(-14px);
     opacity: .6;
 }
 
-:not(.hint-container) .hint {
-    @apply pl-2 pb-4 text-sm w-full text-gray-400;
+textarea.dynamic-textarea:not(:placeholder-shown) ~ .label-container > .dynamic-label {
+    transform: translateY(-11px);
+    font-size: .6rem;
+    line-height: 1rem;
+    opacity: .6;
+}
+
+.hint {
+    @apply text-sm w-full text-gray-400;
 }
 
 .burger {
