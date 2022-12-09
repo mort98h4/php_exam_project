@@ -63,7 +63,8 @@ async function postUser(form, url) {
     });
     if (response.status !== 201) {
         const error = await response.json();
-        console.log(error);
+        form.querySelector('.error-container').classList.remove('hidden');
+        form.querySelector('.error-container span').textContent = error.info;
         return;
     }
 
