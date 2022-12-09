@@ -5,6 +5,7 @@ require_once __DIR__ . '/../classes/DBConnection.php';
 
 $validSession = _validateSession($_SESSION);
 if (!$validSession) _respond('Unauthorized attempt.', 401);
+if (intval($_SESSION['user_role']) === 3) _respond('Unauthorized attempt.', 401);
 
 try {
     $beer = new Beer;
@@ -69,6 +70,11 @@ try {
     $price = isset($_POST['price']) ? floatval($_POST['price']) : -1;
     if (!$beer->setPrice($price)) {
         _respond('Invalid price.', 400);
+    }
+
+    if (!$createdBy === intval($_SESSION['user_id'])) {
+        $db->rollBack();
+        _respond('Unauthorized attempt 3.', 401);
     }
 
 } catch(Exception $ex) {
