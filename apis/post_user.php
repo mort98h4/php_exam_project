@@ -27,12 +27,12 @@ try {
     $db = $db->connect();
     $db->beginTransaction();
 
-    $query = $db->prepare('INSERT INTO users (user_first_name, user_last_name, user_email, user_password, user_is_admin) VALUES (:first_name, :last_name, :email, :password, :is_admin)');
+    $query = $db->prepare('INSERT INTO users (user_first_name, user_last_name, user_email, user_password, user_role) VALUES (:first_name, :last_name, :email, :password, :role)');
     $query->bindValue(':first_name', $user->firstName());
     $query->bindValue(':last_name', $user->lastName());
     $query->bindValue(':email', $user->email());
     $query->bindValue(':password', $user->password());
-    $query->bindValue(':is_admin', 0);
+    $query->bindValue(':role', 3);
     $query->execute();
 
     $user_id = $db->lastInsertId();
