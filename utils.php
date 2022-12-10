@@ -122,3 +122,33 @@ function _getBreweries(): array {
         _respond('Server error.', 500);
     }
 }
+
+function _getUsers(): array {
+    try {
+        $db = new DB;
+        $db = $db->connect();
+
+        $query = $db->prepare('SELECT * FROM users_and_roles LIMIT 10');
+        $query->execute();
+
+        $users = $query->fetchAll();
+        return $users;
+    } catch (Exception $ex) {
+        _respond('Server error.', 500);
+    }
+}
+
+function _getRoles(): array {
+    try {
+        $db = new DB;
+        $db = $db->connect();
+
+        $query = $db->prepare('SELECT * FROM roles LIMIT 3');
+        $query->execute();
+
+        $roles = $query->fetchAll();
+        return $roles;
+    } catch (Exception $ex) {
+        _respond('Server error.', 500);
+    }
+}
