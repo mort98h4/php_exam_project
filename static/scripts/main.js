@@ -16,6 +16,23 @@ function toggleModal() {
     document.querySelector(modalId).classList.toggle('show');
 }
 
+function toggleUpdateModal() {
+    const modalId = event.target.dataset.target;
+    const table = event.target.dataset.table;
+    const id = event.target.dataset.id;
+
+    const modal = document.querySelector(modalId);
+
+    if (modal.classList.contains('show')) {
+        modal.classList.remove('show');
+        return;
+    } 
+    modal.classList.add('show');
+    if (table === 'users') {
+        getUser(id, modalId);
+    }
+}
+
 function toggleBurger() {
     document.querySelector(".burger").classList.toggle('show');
     document.querySelector(".menu").classList.toggle('show');
@@ -54,6 +71,25 @@ function removePreviewImage() {
     // if (inputHidden) {
     //     inputHidden.value = "";
     // }
+}
+
+async function getUser(id, modalId) {
+    const response = await fetch(`/user/${id}`, {
+        method: 'GET',
+    });
+    if (!response.status === 200) {
+        const error = await response.json();
+        console.log('Error: ', error);
+        return;
+    }
+
+    const user = await response.json();
+    const form = document.querySelector(`${modalId} form`);
+    form.user_id.value = user.user_id;
+    form.first_name.value = user.user_first_name;
+    form.last_name.value = user.user_last_name;
+    form.email.value = user.user_email;
+    form.user_role_id.value = user.role_id;
 }
 
 async function postUser(form, url) {
