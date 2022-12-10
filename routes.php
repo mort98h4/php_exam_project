@@ -12,6 +12,7 @@ require_once __DIR__.'/router.php';
 get('/', 'views/index.php');
 get('/sign-up', 'views/sign-up.php');
 get('/tapwall', 'views/tapwall.php');
+get('/admin', 'views/admin.php');
 // get('/10-28/item/$id',                    'views/item');
 // get('/10-28/$gender/shoes/$brand/$size',  'views/product');
 // get('/10-28/test/$word', function($word){
