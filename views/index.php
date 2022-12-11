@@ -20,5 +20,5 @@ include_once __DIR__ . '/templates/nav.php';
 </main>
 
 <?php 
-include_once __DIR__ . '/templates/login_modal.php';
+include_once __DIR__ . '/templates/modal_login.php';
 include_once __DIR__ . '/templates/footer.php';

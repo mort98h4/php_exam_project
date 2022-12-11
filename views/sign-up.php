@@ -15,5 +15,5 @@ require_once __DIR__ . '/templates/nav.php';
 </main>
 
 <?php
-require_once __DIR__ . '/templates/login_modal.php';
+require_once __DIR__ . '/templates/modal_login.php';
 require_once __DIR__ . '/templates/footer.php';

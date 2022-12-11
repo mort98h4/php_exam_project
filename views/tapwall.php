@@ -71,5 +71,5 @@ $beers = _getTapwall();
 </main>
 
 <?php
-include_once __DIR__ . '/templates/login_modal.php';
+include_once __DIR__ . '/templates/modal_login.php';
 include_once __DIR__ . '/templates/footer.php';
