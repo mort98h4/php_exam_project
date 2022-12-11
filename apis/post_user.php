@@ -6,18 +6,25 @@ require_once __DIR__ . '/../classes/User.php';
 try {
     $user = new User;
 
-    if (!$user->setFirstName($_POST['first_name'])) {
+    if (!$user->setFirstName(isset($_POST['first_name']) ? $_POST['first_name'] : '')) {
         _respond('Invalid first name.', 400);
-    };
-    if (!$user->setLastName($_POST['last_name'])) {
-        _respond('Invalid last name.', 400);
-    };
-    if (!$user->setEmail($_POST['email'])) {
-        _respond('Invalid e-mail.', 400);
-    };
-    if (!$user->setPassword($_POST['password'], $_POST['confirm_password'])) {
-        _respond('Password was not set.', 400);
     }
+    if (!$user->setLastName(isset($_POST['last_name']) ? $_POST['last_name'] : '')) {
+        _respond('Invalid last name.', 400);
+    }
+    if (!$user->setEmail(isset($_POST['email']) ? $_POST['email'] : '')) {
+        _respond('Invalid e-mail.', 400);
+    }
+    if (!$user->setPassword(
+            isset($_POST['password']) ? $_POST['password'] : '', 
+            isset($_POST['confirm_password']) ? $_POST['confirm_password'] : ''
+        )) {
+        _respond('Invalid password.', 400);
+    }
+    if (!$user->setRole(isset($_POST['role']) ? intval($_POST['role']) : 3)) {
+        _respond('Invalid role.', 400);
+    }
+
 } catch(Exception $ex) {
     _respond($ex, 500);
 }
@@ -32,7 +39,7 @@ try {
     $query->bindValue(':last_name', $user->lastName());
     $query->bindValue(':email', $user->email());
     $query->bindValue(':password', $user->password());
-    $query->bindValue(':role', 3);
+    $query->bindValue(':role', $user->role());
     $query->execute();
 
     $user_id = $db->lastInsertId();
@@ -45,7 +52,10 @@ try {
     $query->bindValue(':user_id', $user_id);
     $query->bindValue(':session_id', $session_id);
     $query->execute();
-    $_SESSION = $query->fetch();
+
+    if (!_validateSession($_SESSION)) {
+        $_SESSION = $query->fetch();
+    }
 
     $db->commit();
     _respond('User created', 201);
