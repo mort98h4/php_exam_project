@@ -140,7 +140,6 @@ async function updateUser(form, url) {
     }
 
     const user = await response.json();
-    console.log(user);
     const userElem = document.querySelector(`#user_${user.user_id}`);
     userElem.querySelector('h3').textContent = `${user.user_first_name} ${user.user_last_name}`;
     userElem.querySelector('.email').textContent = user.user_email;
@@ -149,6 +148,29 @@ async function updateUser(form, url) {
     form.querySelector('.error-container').classList.add('hidden');
     form.querySelector('.error-container span').textContent = '';
     document.querySelector('#update_user_modal').classList.toggle('show');
+}
+
+async function deleteUser(form, url) {
+    const userId = form.user_id.value;
+    const response = await fetch(`/user/${userId}`, {
+        method: 'DELETE'
+    });
+    if (response.status === 204) {
+        form.querySelector('.error-container').classList.remove('hidden');
+        form.querySelector('.error-container span').textContent = 'User does not exist.';
+        return;
+    }
+    if (response.status !== 200) {
+        const error = await response.json();
+        form.querySelector('.error-container').classList.remove('hidden');
+        form.querySelector('.error-container span').textContent = error.info;
+        return;
+    }
+
+    document.querySelector(`#user_${userId}`).remove();
+    form.querySelector('.error-container').classList.add('hidden');
+    form.querySelector('.error-container span').textContent = '';
+    document.querySelector('#delete_user_modal').classList.toggle('show');
 }
 
 async function postSession(form, url) {
