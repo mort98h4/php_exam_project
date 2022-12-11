@@ -2,8 +2,10 @@
 require_once __DIR__ . '/../utils.php';
 require_once __DIR__ . '/../classes/DBConnection.php';
 
-if (!$_SESSION) { _redirect('/'); }
-if ($user_id !== $_SESSION['user_id']) { _redirect('/'); } 
+$validSession = _validateSession($_SESSION);
+if (!$validSession) _respond('Unauthorized attempt.', 401);
+if (!is_numeric($user_id)) _respond('Invalid user id.', 400);
+if ($user_id !== $_SESSION['user_id']) _respond('Unauthorized attempt.', 401);
 
 try {
     $db = new DB;
@@ -14,9 +16,12 @@ try {
     $query->bindValue(':user_id', $user_id);
     $query->execute();
 
+    if ($query->rowCount() == 0) {
+        _respond('', 204);
+    } 
+
     session_destroy();
-    _respond('', 204);
-    // _redirect('/');
+    _respond('Session deleted', 200);
 } catch(Exception $ex) {
     _respond('Server error.', 500);
 }
