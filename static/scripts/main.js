@@ -45,7 +45,7 @@ function toggleDeleteModal() {
         return;
     } else {
         const form = modal.querySelector('form');
-        form.user_id.value = id;
+        form.id.value = id;
         modal.classList.add('show');
     }
 }
@@ -153,7 +153,7 @@ async function updateUser(form, url) {
 }
 
 async function deleteUser(form, url) {
-    const userId = form.user_id.value;
+    const userId = form.id.value;
     const response = await fetch(`/user/${userId}`, {
         method: 'DELETE'
     });
@@ -172,7 +172,32 @@ async function deleteUser(form, url) {
     document.querySelector(`#user_${userId}`).remove();
     form.querySelector('.error-container').classList.add('hidden');
     form.querySelector('.error-container span').textContent = '';
+    form.confirm.value = '';
     document.querySelector('#delete_user_modal').classList.toggle('show');
+}
+
+async function deleteBrewery(form, url) {
+    const breweryId = form.id.value;
+    const response = await fetch(`/brewery/${breweryId}`, {
+        method: 'DELETE'
+    });
+    if (response.status === 204) {
+        form.querySelector('.error-container').classList.remove('hidden');
+        form.querySelector('.error-container span').textContent = 'User does not exist.';
+        return;
+    }
+    if (response.status !== 200) {
+        const error = await response.json();
+        form.querySelector('.error-container').classList.remove('hidden');
+        form.querySelector('.error-container span').textContent = error.info;
+        return;
+    }
+
+    document.querySelector(`#brewery_${breweryId}`).remove();
+    form.querySelector('.error-container').classList.add('hidden');
+    form.querySelector('.error-container span').textContent = '';
+    form.confirm.value = '';
+    document.querySelector('#delete_brewery_modal').classList.toggle('show');
 }
 
 async function getBrewery(id, modalId) {
