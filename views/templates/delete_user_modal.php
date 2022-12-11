@@ -10,7 +10,7 @@
         <p class="text-center mb-4">Are you sure you want to delete this user?</p>
         <div class="w-3/5 flex justify-center">
             <form class="w-full flex gap-4 flex-wrap justify-center">
-                <input type="hidden" name="user_id" valie="" />
+                <input type="hidden" name="id" value="" />
                 <div class="form-control-full">
                     <div class="relative w-full">
                         <input class="dynamic-input" placeholder=" " type="text" id="confirm_user_delete" name="confirm" required pattern="^[D]{1}[E]{1}[L]{1}[E]{1}[T]{1}[E]{1}" />
