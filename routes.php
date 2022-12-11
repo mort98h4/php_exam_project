@@ -22,6 +22,7 @@ get('/admin', 'views/admin.php');
 // APIS
 get('/users', 'apis/get_users');
 get('/user/$user_id', 'apis/get_user');
+get('/brewery/$brewery_id', 'apis/get_brewery');
 post('/user', 'apis/post_user');
 post('/login', 'apis/post_session');
 post('/beer', 'apis/post_beer');
