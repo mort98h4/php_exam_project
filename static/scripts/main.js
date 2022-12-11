@@ -33,6 +33,21 @@ function toggleUpdateModal() {
     }
 }
 
+function toggleDeleteModal() {
+    const modalId = event.target.dataset.target;
+    const id = event.target.dataset.id;
+
+    const modal = document.querySelector(modalId);
+    if (modal.classList.contains('show')) {
+        modal.classList.remove('show');
+        return;
+    } else {
+        const form = modal.querySelector('form');
+        form.user_id.value = id;
+        modal.classList.add('show');
+    }
+}
+
 function toggleBurger() {
     document.querySelector(".burger").classList.toggle('show');
     document.querySelector(".menu").classList.toggle('show');
