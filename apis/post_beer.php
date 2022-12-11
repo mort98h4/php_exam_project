@@ -5,7 +5,7 @@ require_once __DIR__ . '/../classes/DBConnection.php';
 
 $validSession = _validateSession($_SESSION);
 if (!$validSession) _respond('Unauthorized attempt.', 401);
-if (intval($_SESSION['user_role']) === 3) _respond('Unauthorized attempt.', 401);
+if (!in_array($_SESSION['user_role'], ['1', '2'])) _respond('Unauthorized attempt.', 401);
 
 try {
     $beer = new Beer;
@@ -123,17 +123,14 @@ try {
 
     $beer_id = $db->lastInsertId();
 
-    $query = $db->prepare('SELECT * FROM beers_and_breweries WHERE beer_id = :beer_id');
+    $query = $db->prepare('SELECT * FROM beers_and_breweries WHERE beer_id = :beer_id LIMIT 1');
     $query->bindValue(':beer_id', $beer_id);
     $query->execute();
 
     $beer = $query->fetch();
 
     $db->commit();
-    http_response_code(201);
-    header('Content-Type: application/json');
-
-    echo json_encode($beer);
+    _respond($beer, 201);
 } catch(Exception $ex) {
     $db->rollBack();
     _respond('Server error.', 500);
