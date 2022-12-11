@@ -193,7 +193,7 @@ async function deleteSession() {
     const response = await fetch(`/logout/${userId}`, {
         method: 'DELETE',
     });
-    if (response.status !== 204) {
+    if (response.status !== 200) {
         const error = await response.json();
         console.log(error);
         return;
