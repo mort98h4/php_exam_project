@@ -6,7 +6,7 @@ require_once __DIR__ . '/../classes/User.php';
 $validSession = _validateSession($_SESSION);
 if (!$validSession) _respond('Unauthorized attempt.', 401);
 if (!is_numeric($user_id)) _respond('Invalid user id.', 400);
-if (($_SESSION['user_id'] !== $user_id) && ($_SESSION['user_role'] !== '1')) _respond('Unauthorized attempt.', 401); 
+if (($_SESSION['user_id'] !== $user_id) && (intval($_SESSION['user_role']) !== 1)) _respond('Unauthorized attempt. 2', 401); 
 
 try {
     $user = new User;
@@ -72,10 +72,18 @@ try {
     $query->execute();
     $updatedUser = $query->fetch();
 
+    if ($_SESSION['user_id'] == $user_id ) {
+        $query = $db->prepare('SELECT * FROM user_sessions WHERE user_id = :user_id');
+        $query->bindValue(':user_id', $user_id);
+        $query->execute();
+        $updatedSessionUser = $query->fetch();
+        $_SESSION = $updatedSessionUser;
+    }
+
     $db->commit();
     echo json_encode($updatedUser);
 
 } catch(Exception $ex) {
     $db->rollBack();
-    _respond($ex, 500);
+    _respond('Server error.', 500);
 }
