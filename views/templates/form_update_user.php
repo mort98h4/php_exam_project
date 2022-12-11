@@ -48,7 +48,7 @@ $roles = _getRoles();
     </div>
     <div class="flex flex-wrap w-full gap-4 justify-center">
         <div class="error-container text-center w-full hidden">
-            <span class="text-red-600">testing</span>
+            <span class="text-red-600"></span>
         </div>
         <button class="btn" type="submit" onclick="formValidation(updateUser)">Update user</button>
     </div>
