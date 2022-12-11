@@ -5,7 +5,6 @@ include_once __DIR__ . '/templates/header.php';
 include_once __DIR__ . '/templates/nav.php';
 
 $beers = _getTapwall();
-$breweries = _getBreweries();
 
 ?> 
 <main class="container mx-auto p-4 mt-12">
