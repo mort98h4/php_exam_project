@@ -119,7 +119,7 @@ $breweries = _getBreweries();
         <div class="form-control">
             <div class="preview hidden relative" data-input-id="#beer_image">
                 <img src="" />
-                <button type="button" role="button" onclick="removePreviewImage()" data-input-id="#beer_image" class="btn-close absolute top-0 right-0 cursor-pointer">
+                <button type="button" role="button" onclick="removePreviewImage()" data-input-id="#beer_image" class="btn-icon absolute top-0 right-0 cursor-pointer">
                     <i class="fa-sharp fa-solid fa-xmark pointer-events-none text-2xl"></i>
                 </button>
             </div>
