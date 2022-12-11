@@ -176,30 +176,6 @@ async function deleteUser(form, url) {
     document.querySelector('#delete_user_modal').classList.toggle('show');
 }
 
-async function deleteBrewery(form, url) {
-    const breweryId = form.id.value;
-    const response = await fetch(`/brewery/${breweryId}`, {
-        method: 'DELETE'
-    });
-    if (response.status === 204) {
-        form.querySelector('.error-container').classList.remove('hidden');
-        form.querySelector('.error-container span').textContent = 'User does not exist.';
-        return;
-    }
-    if (response.status !== 200) {
-        const error = await response.json();
-        form.querySelector('.error-container').classList.remove('hidden');
-        form.querySelector('.error-container span').textContent = error.info;
-        return;
-    }
-
-    document.querySelector(`#brewery_${breweryId}`).remove();
-    form.querySelector('.error-container').classList.add('hidden');
-    form.querySelector('.error-container span').textContent = '';
-    form.confirm.value = '';
-    document.querySelector('#delete_brewery_modal').classList.toggle('show');
-}
-
 async function getBrewery(id, modalId) {
     const response = await fetch(`/brewery/${id}`, {
         method: 'GET',
@@ -214,6 +190,21 @@ async function getBrewery(id, modalId) {
     const form = document.querySelector(`${modalId} form`);
     form.brewery_id.value = brewery.brewery_id;
     form.name.value = brewery.brewery_name;
+}
+
+async function postBrewery(form, url) {
+    const response = await fetch('/brewery', {
+        method: 'POST',
+        body: new FormData(form)
+    });
+    if (response.status !== 201) {
+        const error = await response.json();
+        form.querySelector('.error-container').classList.remove('hidden');
+        form.querySelector('.error-container span').textContent = error.info;
+        return;
+    }
+
+    window.location.href = url;
 }
 
 async function updateBrewery(form, url) {
@@ -240,6 +231,30 @@ async function updateBrewery(form, url) {
     form.querySelector('.error-container').classList.add('hidden');
     form.querySelector('.error-container span').textContent = '';
     document.querySelector('#update_brewery_modal').classList.toggle('show');
+}
+
+async function deleteBrewery(form, url) {
+    const breweryId = form.id.value;
+    const response = await fetch(`/brewery/${breweryId}`, {
+        method: 'DELETE'
+    });
+    if (response.status === 204) {
+        form.querySelector('.error-container').classList.remove('hidden');
+        form.querySelector('.error-container span').textContent = 'User does not exist.';
+        return;
+    }
+    if (response.status !== 200) {
+        const error = await response.json();
+        form.querySelector('.error-container').classList.remove('hidden');
+        form.querySelector('.error-container span').textContent = error.info;
+        return;
+    }
+
+    document.querySelector(`#brewery_${breweryId}`).remove();
+    form.querySelector('.error-container').classList.add('hidden');
+    form.querySelector('.error-container span').textContent = '';
+    form.confirm.value = '';
+    document.querySelector('#delete_brewery_modal').classList.toggle('show');
 }
 
 async function postSession(form, url) {
