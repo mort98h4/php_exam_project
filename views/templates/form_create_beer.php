@@ -4,8 +4,6 @@ $breweries = _getBreweries();
 
 <?php if ($validSession && ($admin || $editor)) { ?>
 
-<section id="createUser" class="pt-12">
-    <h2 class="mb-4 font-medium text-2xl">Create new user</h2>
     <form class="w-1/2 flex flex-wrap gap-4 self-start">
         <input type="hidden" name="user_id" value="<?= out($_SESSION['user_id']) ?>" />
         <div class="form-control">
@@ -134,6 +132,5 @@ $breweries = _getBreweries();
             <button class="btn" type="submit" onclick="formValidation(postBeer)">Create beer</button>
         </div>
     </form>
-</section>
 
 <?php } ?>
