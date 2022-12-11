@@ -13,7 +13,7 @@
                 <input type="hidden" name="user_id" valie="" />
                 <div class="form-control-full">
                     <div class="relative w-full">
-                        <input class="dynamic-input" placeholder=" " type="text" id="confirm_user_delete" name="confirm" required />
+                        <input class="dynamic-input" placeholder=" " type="text" id="confirm_user_delete" name="confirm" required pattern="^[D]{1}[E]{1}[L]{1}[E]{1}[T]{1}[E]{1}" />
                         <div class="label-container">
                             <label for="confirm_user_delete" class="dynamic-label">Confirm deletion</label>
                         </div>
