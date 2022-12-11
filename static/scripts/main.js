@@ -30,6 +30,8 @@ function toggleUpdateModal() {
     modal.classList.add('show');
     if (table === 'users') {
         getUser(id, modalId);
+    } else if (table === 'breweries') {
+        getBrewery(id, modalId);
     }
 }
 
@@ -171,6 +173,48 @@ async function deleteUser(form, url) {
     form.querySelector('.error-container').classList.add('hidden');
     form.querySelector('.error-container span').textContent = '';
     document.querySelector('#delete_user_modal').classList.toggle('show');
+}
+
+async function getBrewery(id, modalId) {
+    const response = await fetch(`/brewery/${id}`, {
+        method: 'GET',
+    });
+    if (!response.status === 200) {
+        const error = await response.json();
+        console.log(error.info);
+        return;
+    }
+
+    const brewery = await response.json();
+    const form = document.querySelector(`${modalId} form`);
+    form.brewery_id.value = brewery.brewery_id;
+    form.name.value = brewery.brewery_name;
+}
+
+async function updateBrewery(form, url) {
+    const response = await fetch(`/brewery/${form.brewery_id.value}`, {
+        method: 'POST',
+        body: new FormData(form)
+    });
+    if (response.status === 204) {
+        form.querySelector('.error-container').classList.remove('hidden');
+        form.querySelector('.error-container span').textContent = 'No brewery data to update.';
+        return;
+    }
+    if (response.status !== 200) {
+        const error = await response.json();
+        form.querySelector('.error-container').classList.remove('hidden');
+        form.querySelector('.error-container span').textContent = error.info;
+        return;
+    }
+
+    const brewery = await response.json();
+    const breweryElem = document.querySelector(`#brewery_${brewery.brewery_id}`);
+    breweryElem.querySelector('h3').textContent = brewery.brewery_name;
+
+    form.querySelector('.error-container').classList.add('hidden');
+    form.querySelector('.error-container span').textContent = '';
+    document.querySelector('#update_brewery_modal').classList.toggle('show');
 }
 
 async function postSession(form, url) {
