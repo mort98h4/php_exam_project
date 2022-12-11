@@ -27,6 +27,7 @@ post('/login', 'apis/post_session');
 post('/beer', 'apis/post_beer');
 post('/user/$user_id', 'apis/update_user');
 delete('/logout/$user_id', 'apis/delete_session');
+delete('/user/$user_id', 'apis/delete_user');
 
 
 // For GET or POST
