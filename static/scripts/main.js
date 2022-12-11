@@ -1,10 +1,10 @@
 "use strict";
 
 function formValidation(callback, url) {
+    event.preventDefault();
     if (!url) {
         url = '/';
     }
-    event.preventDefault();
     const form = event.target.form;
     if (form.checkValidity()) {
         callback(form, url);
@@ -105,6 +105,35 @@ async function postUser(form, url) {
     }
 
     window.location.href=url;    
+}
+
+async function updateUser(form, url) {
+    const response = await fetch(`/user/${form.user_id.value}`, {
+        method: 'POST',
+        body: new FormData(form)
+    });
+    if (response.status === 204) {
+        form.querySelector('.error-container').classList.remove('hidden');
+        form.querySelector('.error-container span').textContent = 'No user data to update.';
+        return;
+    }
+    if (response.status !== 200) {
+        const error = await response.json();
+        form.querySelector('.error-container').classList.remove('hidden');
+        form.querySelector('.error-container span').textContent = error.info;
+        return;
+    }
+
+    const user = await response.json();
+    console.log(user);
+    const userElem = document.querySelector(`#user_${user.user_id}`);
+    userElem.querySelector('h3').textContent = `${user.user_first_name} ${user.user_last_name}`;
+    userElem.querySelector('.email').textContent = user.user_email;
+    userElem.querySelector('.role').textContent = user.role_name;
+
+    form.querySelector('.error-container').classList.add('hidden');
+    form.querySelector('.error-container span').textContent = '';
+    document.querySelector('#update_user_modal').classList.toggle('show');
 }
 
 async function postSession(form, url) {
