@@ -6,10 +6,7 @@ class User {
     private const NAME_REGEX = '/^[a-zA-ZæøåñçáéíóúàèìòùäëïöüâêîôûÆØÅÑÇÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÂÊÎÔÛ \-]+$/i';
     private const EMAIL_REGEX = '/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i';
     private const PASSWORD_REGEX = '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/i';
-    private const ROLES = [
-        1=>'admin',
-        2=>'editor',
-    ];
+    private const ROLE_OPTIONS = [1, 2, 3];
 
     private string $firstName;
     private string $lastName;
@@ -53,6 +50,15 @@ class User {
         }
     }
 
+    public function setRole(int $role): bool {
+        if (!$this->roleIsValid($role)) {
+            return false;
+        } else {
+            $this->role = $role;
+            return true;
+        }
+    }
+
     public function nameIsValid(string $name): bool {
         return ((strlen($name) >= _STR_MIN_LEN) && (strlen($name) <= _STR_MAX_LEN) && (preg_match(self::NAME_REGEX, $name)));
     }
@@ -65,14 +71,10 @@ class User {
         return (($password === $confirmPassword) && (preg_match(self::PASSWORD_REGEX, $password)));
     }
 
-    // public function __toString()
-    // {
-    //     return <<<USER
-    //         Name: {$this->firstName} {$this->lastName} <br>
-    //         Email: {$this->email} <br>
-    //         Password: {$this->password} <br>
-    //     USER;
-    // }
+    public function roleIsValid(int $role): bool {
+        return (in_array($role, self::ROLE_OPTIONS));
+    }
+
     public function firstName(): string {
         return (isset($this->firstName) ? $this->firstName : '');
     }
@@ -87,5 +89,9 @@ class User {
 
     public function password(): string {
         return (isset($this->password) ? $this->password : '');
+    }
+
+    public function role(): string {
+        return (isset($this->role) ? $this->role : '');
     }
 }
