@@ -30,7 +30,7 @@
         <hr class="opacity-50 mb-2" />
         <div class="w-full text-center mb-4">
             <p class="mb-2">Don't have an account?</p>
-            <a href="/sign-up" class="nav-link text-xl">sign up</a>
+            <a href="/signup" class="nav-link text-xl">sign up</a>
         </div>
     </div>
 </section>

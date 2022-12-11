@@ -10,7 +10,7 @@ require_once __DIR__.'/router.php';
 // In the URL -> http://localhost
 // The output -> Index
 get('/', 'views/index.php');
-get('/sign-up', 'views/sign-up.php');
+get('/signup', 'views/sign_up.php');
 get('/tapwall', 'views/tapwall.php');
 get('/admin', 'views/admin.php');
 // get('/10-28/item/$id',                    'views/item');

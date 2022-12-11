@@ -19,7 +19,7 @@ if ($validSession) {
             <a class="nav-link" href="/admin">Admin panel</a>
             <?php } ?>
             <?php if (!$validSession) { ?>
-            <a class="nav-link" href="/sign-up">Sign up</a>
+            <a class="nav-link" href="/signup">Sign up</a>
             <a class="nav-link" onclick="toggleModal()" data-target="#login_modal">Log in</a>
             <?php } else { ?>
             <a class="nav-link" data-id="<?= out($_SESSION['user_id']) ?>" onclick="deleteSession()">Log out</a>
