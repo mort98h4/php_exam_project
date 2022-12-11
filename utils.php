@@ -7,7 +7,7 @@ define('_IMG_FORMATS', ['image/png', 'image/jpeg', 'image/jpg']);
 
 include_once __DIR__ . '/classes/DBConnection.php';
 
-function _respond(string $message='', int $status=200) {
+function _respond($message='', int $status=200) {
     http_response_code($status);
     header('Content-Type: application/json');
     $res = is_array($message) ? $message : ['info' => $message];
