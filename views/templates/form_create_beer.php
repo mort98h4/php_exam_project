@@ -129,7 +129,7 @@ $breweries = _getBreweries();
             <div class="error-container text-center w-full hidden">
                 <span class="text-red-600">testing</span>
             </div>
-            <button class="btn" type="submit" onclick="formValidation(postBeer)">Create beer</button>
+            <button class="btn" type="submit" onclick="formValidation(postBeer, '/admin')">Create beer</button>
         </div>
     </form>
 
