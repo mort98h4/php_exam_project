@@ -30,6 +30,7 @@ post('/brewery', 'apis/post_brewery');
 post('/beer', 'apis/post_beer');
 post('/user/$user_id', 'apis/update_user');
 post('/brewery/$brewery_id', 'apis/update_brewery');
+post('/beer/$beer_id', 'apis/update_beer');
 delete('/logout/$user_id', 'apis/delete_session');
 delete('/user/$user_id', 'apis/delete_user');
 delete('/brewery/$brewery_id', 'apis/delete_brewery');
