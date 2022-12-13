@@ -8,6 +8,14 @@
     .form-control {
         width: calc(50% - .5rem);
     }
+
+    .form-control-66 {
+        width: calc(66.66% - .5rem);
+    }
+
+    .form-control-33 {
+        width: calc(33.33% - .5rem);
+    }
 }
 
 * {
@@ -16,12 +24,30 @@
 
 body {
     color: white;
+    scrollbar-gutter: stable both-edges;
+    overflow-y: overlay;
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-body::-webkit-scrollbar {
-    display: none;
-  }
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+/* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, .2);
+    border-radius: .5rem;
+}
+  
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, .5);
+}
   
   /* Hide scrollbar for IE, Edge and Firefox */
 body {
@@ -30,11 +56,17 @@ body {
 }
 
 .modal {
-    @apply h-screen w-screen absolute top-0 justify-center items-center bg-black bg-opacity-50 hidden;
+    @apply h-screen w-screen fixed top-0 justify-center items-center bg-black bg-opacity-50 hidden;
 }
 
 .modal.show {
     @apply flex;
+}
+
+.modal div.relative.z-20 {
+    /* @apply overflow-y-overlay; */
+    max-height: calc(100% - 6.5rem);
+    overflow-y: overlay;
 }
 
 .btn {
@@ -44,7 +76,7 @@ body {
     @apply focus:opacity-100 focus-visible:outline-none;
 }
 
-.btn-close {
+.btn-icon {
     @apply opacity-70 transition-opacity hover:opacity-100 focus:opacity-100 focus-visible:outline-none;
 }
 
@@ -70,6 +102,7 @@ input.dynamic-input {
 textarea.dynamic-textarea {
     @apply w-full h-24 bg-gray-900 px-2 py-3 outline-none border-y-2 border-gray-900 mb-1;
     transition: border-bottom-color .15s ease-in-out;
+    resize: none;
 }
 
 select.dynamic-select {
@@ -218,4 +251,16 @@ textarea.dynamic-textarea:not(:placeholder-shown) ~ .label-container > .dynamic-
 
 .tapwall .row .col-span-1:not(:last-child), .tapwall .row .col-span-2:not(:last-child), .tapwall .row .col-span-3:not(:last-child) {
     @apply border-r border-r-white;
+}
+
+.user, .brewery, .beer {
+    @apply border-b border-b-white py-4;
+}
+
+.user:first-of-type, .brewery:first-of-type, .beer:first-of-type {
+    @apply pt-0;
+}
+
+.user:last-of-type, .brewery:last-of-type, .beer:last-of-type {
+    @apply border-b-0;
 }
