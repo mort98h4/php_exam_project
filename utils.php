@@ -123,6 +123,21 @@ function _getBreweries(): array {
     }
 }
 
+function _getBeers(): array {
+    try {
+        $db = new DB;
+        $db = $db->connect();
+
+        $query = $db->prepare('SELECT * FROM beers_and_breweries');
+        $query->execute();
+
+        $beers = $query->fetchAll();
+        return $beers;
+    } catch (Exception $ex) {
+        _respond('Server error.', 500);
+    }
+}
+
 function _getUsers(): array {
     try {
         $db = new DB;
