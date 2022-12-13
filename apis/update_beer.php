@@ -104,6 +104,9 @@ try {
         _respond('Invalid updated at value.', 500);
     }
     $newBeer['beer_updated_at'] = $beer->updatedAt();
+    if ($newBeer['beer_is_active'] === '0') {
+        $newBeer['beer_tapwall_no'] = '0';
+    }
 
     $query = $db->prepare('UPDATE beers SET beer_brewery_id = :brewery_id, beer_style = :style, beer_name = :name, beer_ibu = :ibu, beer_ebc = :ebc, beer_volume = :volume, beer_description = :description, beer_image = :image, beer_updated_at = :updated_at, beer_is_active = :is_active, beer_tapwall_no = :tapwall_no, beer_price = :price WHERE beer_id = :beer_id');
     $query->bindValue(':brewery_id', $newBeer['beer_brewery_id']);
