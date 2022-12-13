@@ -24,7 +24,7 @@ function toggleUpdateModal() {
     const modal = document.querySelector(modalId);
 
     if (modal.classList.contains('show')) {
-        modal.classList.remove('show');
+        emptyModalForm(modalId, modal.querySelector('form'));
         return;
     } 
     modal.classList.add('show');
@@ -50,6 +50,37 @@ function toggleDeleteModal() {
         form.id.value = id;
         modal.classList.add('show');
     }
+}
+
+function emptyModalForm(modalId, form) {
+    const modal = document.querySelector(modalId);
+    if (modal.classList.contains('show')) {
+        modal.classList.toggle('show');
+    }
+    form.querySelectorAll('input').forEach(input => {
+        input.value = '';
+    });
+    form.querySelectorAll('select').forEach(select => {
+        select.value = '';
+        select.classList.remove('valid');
+    });
+    form.querySelector('textarea').value = '';
+    const imgPreview = form.querySelector('.preview');
+    if (imgPreview) {
+        form.querySelector('img').src = '';
+        form.querySelector('img').alt = '';
+        imgPreview.classList.add('hidden');
+    }
+    form.querySelector('.error-container').classList.add('hidden');
+    form.querySelector('.error-container span').textContent = '';
+}
+
+function formatDate(timestamp) {
+    const d = new Date(parseInt(timestamp) * 1000);
+    const year = d.getFullYear()
+    const date = parseInt(d.getDate()) < 10 ? `0${d.getDate()}` : d.getDate();
+    const month = parseInt(d.getMonth()) + 1;
+    return `${date}/${month}/${year}`;
 }
 
 function toggleBurger() {
@@ -146,9 +177,7 @@ async function updateUser(form, url) {
     userElem.querySelector('.email').textContent = user.user_email;
     userElem.querySelector('.role').textContent = user.role_name;
 
-    form.querySelector('.error-container').classList.add('hidden');
-    form.querySelector('.error-container span').textContent = '';
-    document.querySelector('#update_user_modal').classList.toggle('show');
+    emptyModalForm('#update_user_modal', form);
 }
 
 async function deleteUser(form, url) {
@@ -191,42 +220,6 @@ async function getBrewery(id, modalId) {
     form.name.value = brewery.brewery_name;
 }
 
-async function getBeer(id, modalId) {
-    const response = await fetch(`/beer/${id}`, {
-        method: 'GET'
-    });
-    if (!response.status === 200) {
-        const error = await response.json();
-        console.log(error.info);
-        return;
-    }
-
-    const beer = await response.json();
-    const form = document.querySelector(`${modalId} form`);
-    form.beer_id.value = beer.beer_id;
-    form.beer_brewery_id.value = beer.beer_brewery_id;
-    form.beer_brewery_id.classList.add('valid');
-    form.name.value = beer.beer_name;
-    form.style.value = beer.beer_style;
-    form.volume.value = beer.beer_volume;
-    form.ibu.value = beer.beer_ibu;
-    form.ebc.value = beer.beer_ebc;
-    form.is_active.value = beer.beer_is_active;
-    form.tapwall_no.value = beer.beer_tapwall_no;
-    form.price.value = beer.beer_price;
-    form.description.value = beer.beer_description;
-    form.beer_image.value = beer.beer_image;
-    form.created_at.value = beer.beer_created_at;
-    form.updated_at.value = beer.beer_updated_at;
-    form.created_by.value = beer.beer_created_by;
-
-    if (beer.beer_image) {
-        const preview = form.querySelector('.preview');
-        preview.classList.remove('hidden');
-        preview.querySelector('img').src = `public/images/uploads/${beer.beer_image}`;
-    }
-}
-
 async function postBrewery(form, url) {
     const response = await fetch('/brewery', {
         method: 'POST',
@@ -263,9 +256,7 @@ async function updateBrewery(form, url) {
     const breweryElem = document.querySelector(`#brewery_${brewery.brewery_id}`);
     breweryElem.querySelector('h3').textContent = brewery.brewery_name;
 
-    form.querySelector('.error-container').classList.add('hidden');
-    form.querySelector('.error-container span').textContent = '';
-    document.querySelector('#update_brewery_modal').classList.toggle('show');
+    emptyModalForm('#update_brewery_modal', form);
 }
 
 async function deleteBrewery(form, url) {
@@ -307,6 +298,43 @@ async function postSession(form, url) {
     window.location.href=url;
 }
 
+async function getBeer(id, modalId) {
+    const response = await fetch(`/beer/${id}`, {
+        method: 'GET'
+    });
+    if (!response.status === 200) {
+        const error = await response.json();
+        console.log(error.info);
+        return;
+    }
+
+    const beer = await response.json();
+    const form = document.querySelector(`${modalId} form`);
+    form.beer_id.value = beer.beer_id;
+    form.beer_brewery_id.value = beer.beer_brewery_id;
+    form.beer_brewery_id.classList.add('valid');
+    form.name.value = beer.beer_name;
+    form.style.value = beer.beer_style;
+    form.volume.value = beer.beer_volume;
+    form.ibu.value = beer.beer_ibu;
+    form.ebc.value = beer.beer_ebc;
+    form.is_active.value = beer.beer_is_active;
+    form.is_active.classList.add('valid');
+    form.tapwall_no.value = beer.beer_tapwall_no;
+    form.price.value = beer.beer_price;
+    form.description.value = beer.beer_description;
+    form.beer_image.value = beer.beer_image;
+    form.created_at.value = beer.beer_created_at;
+    form.updated_at.value = beer.beer_updated_at;
+    form.created_by.value = beer.beer_created_by;
+
+    if (beer.beer_image) {
+        const preview = form.querySelector('.preview');
+        preview.classList.remove('hidden');
+        preview.querySelector('img').src = `public/images/uploads/${beer.beer_image}`;
+    }
+}
+
 async function postBeer(form, url) {
     const isActive = form.is_active;
     if (isActive.value === "0") {
@@ -326,6 +354,49 @@ async function postBeer(form, url) {
     }
 
     window.location.href=url;
+}
+
+async function updateBeer(form, url) {
+    const response = await fetch(`/beer/${form.beer_id.value}`, {
+        method: 'POST',
+        body: new FormData(form)
+    });
+    if (response.status === 204) {
+        form.querySelector('.error-container').classList.remove('hidden');
+        form.querySelector('.error-container span').textContent = 'No brewery data to update.';
+        return;
+    }
+    if (response.status !== 200) {
+        const error = await response.json();
+        form.querySelector('.error-container').classList.remove('hidden');
+        form.querySelector('.error-container span').textContent = error.info;
+        return;
+    }
+
+    const beer = await response.json();
+    console.log(beer);
+    const beerElem = document.querySelector(`#beer_${beer.beer_id}`);
+
+    beerElem.querySelector('h3').textContent = beer.beer_name;
+    beerElem.querySelector('.beerBrewery').textContent = beer.brewery_name;
+    beerElem.querySelector('.style').textContent = beer.beer_style;
+    beerElem.querySelector('.ibu').textContent = parseInt(beer.beer_ibu) ? beer.beer_ibu : '-';
+    beerElem.querySelector('.ebc').textContent = parseInt(beer.beer_ebc) ? beer.beer_ebc : '-';
+    beerElem.querySelector('.volume').textContent = beer.beer_volume + '%';
+    beerElem.querySelector('.price').textContent = beer.beer_price + ' DKK';
+    beerElem.querySelector('.isActive').textContent = parseInt(beer.beer_is_active) ? 'Yes' : 'No';
+    beerElem.querySelector('.tapwallNo').textContent = parseInt(beer.beer_tapwall_no) ? beer.beer_tapwall_no : '-';
+    beerElem.querySelector('.description').textContent = parseInt(beer.beer_description) ? beer.beer_description : '-';
+    beerElem.querySelector('.updatedAt').textContent = formatDate(beer.beer_updated_at);
+    beerElem.querySelector('img').src = `./public/images/uploads/${beer.beer_image}`;
+    beerElem.querySelector('img').alt = `${beer.brewery_name} ${beer.beer_name}`;
+    if (!beer.beer_image) {
+        beerElem.querySelector('img').classList.add('hidden');
+    } else {
+        beerElem.querySelector('img').classList.remove('hidden');
+    }
+
+    emptyModalForm('#update_beer_modal', form);
 }
 
 async function deleteSession() {
