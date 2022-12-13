@@ -23,7 +23,7 @@ class Beer {
     private string $image;
     private int $createdBy;
     private int $createdAt;
-    private int $updatedAt;
+    private string $updatedAt;
     private int $isActive;
     private int $tapwallNo;
     private float $price;
@@ -118,7 +118,7 @@ class Beer {
         }
     }
 
-    public function setUpdatedAt(int $timestamp): bool {
+    public function setUpdatedAt(string $timestamp): bool {
         if (!$this->updatedAtIsValid($timestamp)) {
             return false;
         } else {
@@ -187,8 +187,13 @@ class Beer {
         return ((is_numeric($timestamp)) && ($timestamp > 0) && $timestamp <= time());
     }
 
-    public function updatedAtIsValid(int $timestamp): bool {
-        return ((is_numeric($timestamp)) && ($timestamp > $this->createdAt) && ($timestamp <= time()));
+    public function updatedAtIsValid(string $timestamp): bool {
+        if ($timestamp === '') {
+            return true;
+        } else {
+            $timestamp = intval($timestamp);
+            return ((is_numeric($timestamp)) && ($timestamp > $this->createdAt) && ($timestamp <= time()));
+        }
     }
 
     public function isActiveIsValid(int $bool): bool {
@@ -203,27 +208,59 @@ class Beer {
         return ((is_numeric($price)) && ($price > self::MIN_PRICE));
     }
 
-    // public function __toString()
-    // {
-    //     return <<<BEER
-    //         Brewery ID: {$this->breweryId} <br>
-    //         Style: {$this->style} <br>
-    //         Name: {$this->name} <br>
-    //         IBU: {$this->IBU} <br>
-    //         EBC: {$this->EBC} <br>
-    //         Volume: {$this->volume} <br>
-    //         Image: {$this->image} <br>
-    //         Created by: {$this->createdBy} <br>
-    //         Created at: {$this->createdAt} <br>
-    //         Updated at: {$this->updatedAt} <br>
-    //     BEER;
-    // }
+    public function breweryId(): string {
+        return (isset($this->breweryId) ? $this->breweryId : '');
+    }
+
+    public function style(): string {
+        return (isset($this->style) ? $this->style : '');
+    }
+
+    public function name(): string {
+        return (isset($this->name) ? $this->name : '');
+    }
+
+    public function IBU(): string {
+        return (isset($this->IBU) ? $this->IBU : '');
+    }
+
+    public function EBC(): string {
+        return (isset($this->EBC) ? $this->EBC : '');
+    }
 
     public function volume(): string {
-        return (isset($this->volume) ? $this->volume . '%' : '');
+        return (isset($this->volume) ? $this->volume : '');
+    }
+
+    public function description(): string {
+        return (isset($this->description) ? $this->description : '');
     }
 
     public function image(): string {
         return (isset($this->image) ? $this->image : '');
+    }
+
+    public function createdBy(): string {
+        return (isset($this->createdBy) ? $this->createdBy : '');
+    }
+
+    public function createdAt(): string {
+        return (isset($this->createdAt) ? $this->createdAt : '');
+    }
+
+    public function updatedAt(): string {
+        return (isset($this->updatedAt) ? $this->updatedAt : '');
+    }
+
+    public function isActive(): string {
+        return (isset($this->isActive) ? $this->isActive : '');
+    }
+
+    public function tapwallNo(): string {
+        return (isset($this->tapwallNo) ? $this->tapwallNo : '');
+    }
+
+    public function price(): string {
+        return (isset($this->price) ? $this->price : '');
     }
 }
