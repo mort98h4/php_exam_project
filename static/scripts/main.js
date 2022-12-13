@@ -410,6 +410,27 @@ async function updateBeer(form, url) {
     emptyModalForm('#update_beer_modal', form);
 }
 
+async function deleteBeer(form, url) {
+    const beerId = form.id.value;
+    const response = await fetch(`/beer/${beerId}`, {
+        method: 'DELETE'
+    });
+    if (response.status === 204) {
+        form.querySelector('.error-container').classList.remove('hidden');
+        form.querySelector('.error-container span').textContent = 'Beer does not exist.';
+        return;
+    }
+    if (response.status !== 200) {
+        const error = await response.json();
+        form.querySelector('.error-container').classList.remove('hidden');
+        form.querySelector('.error-container span').textContent = error.info;
+        return;
+    }
+
+    document.querySelector(`#beer_${beerId}`).remove();
+    emptyModalForm('#delete_beer_modal', form);
+}
+
 async function deleteSession() {
     const userId = event.target.dataset.id;
     console.log(userId);
