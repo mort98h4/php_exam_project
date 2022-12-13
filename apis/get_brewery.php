@@ -21,9 +21,8 @@ try {
         _respond('Brewery does not exist.', 400);
     }
 
-    header('Content-Type: application/json');
-    http_response_code(200);
-    echo json_encode($brewery);
+    _respond($brewery, 200);
+    
 } catch(Exception $ex) {
     _respond($ex, 500);
 }
