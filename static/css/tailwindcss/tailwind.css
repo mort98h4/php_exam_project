@@ -193,6 +193,16 @@ textarea.dynamic-textarea:not(:placeholder-shown) ~ .label-container > .dynamic-
     @apply text-sm w-full text-gray-400;
 }
 
+.logo {
+    width: auto;
+    height: calc(50px - 1rem);
+}
+
+.logo img {
+    height: 100%;
+    width: auto;
+}
+
 .burger {
     @apply relative w-[24px] h-[24px];
 }
@@ -202,7 +212,7 @@ textarea.dynamic-textarea:not(:placeholder-shown) ~ .label-container > .dynamic-
     transition: opacity .15s ease-in-out, transform .15s ease-in-out;
 }
 
-.burger .fa-bars {
+.burger .fa-bars, .burger .fa-ellipsis {
     @apply text-xl top-0 right-0 opacity-70;
 }
 
@@ -210,7 +220,7 @@ textarea.dynamic-textarea:not(:placeholder-shown) ~ .label-container > .dynamic-
     @apply text-2xl top-[-0.1rem] right-[0.1rem] opacity-0;
 }
 
-.burger.show .fa-bars {
+.burger.show .fa-bars, .burger.show .fa-ellipsis {
     @apply opacity-0;
     transform: rotate(360deg);
 }
@@ -220,12 +230,12 @@ textarea.dynamic-textarea:not(:placeholder-shown) ~ .label-container > .dynamic-
     transform: rotate(360deg);
 }
 
-.burger:not(.show):hover .fa-bars, .burger.show:hover .fa-xmark {
+.burger:not(.show):hover .fa-bars, .burger:not(.show):hover .fa-ellipsis, .burger.show:hover .fa-xmark {
     @apply opacity-100;
 }
 
 .nav-link {
-    @apply uppercase font-medium tracking-widest cursor-pointer hover:underline;
+    @apply text-sm md:text-base uppercase font-medium tracking-widest cursor-pointer hover:underline;
 }
 
 .menu {
@@ -235,6 +245,32 @@ textarea.dynamic-textarea:not(:placeholder-shown) ~ .label-container > .dynamic-
 
 .menu.show {
     transform: translateY(0);
+}
+
+.sidemenu {
+    /* mobile */
+    @apply bg-black col-span-10 w-[60%] p-4 pt-[50px] fixed h-screen top-0 left-0 z-20;
+    transition: transform .3s ease-in-out;
+    transform: translateX(-100%);
+
+    /* tablet */
+    @apply sm:w-full sm:sticky sm:translate-x-0 sm:col-span-3 sm:p-0 sm:top-[50px] sm:max-h-screen; 
+    /* desktop */
+    @apply xl:col-span-2;
+}
+
+.sidemenu .burger {
+    @apply sm:hidden;
+    transform: translateX(200%);
+    transition: transform .3s ease-in-out;
+}
+
+.sidemenu.show .burger {
+    transform: translateX(0);
+}
+
+.sidemenu.show {
+    transform: translateX(0);
 }
 
 .tapwall {

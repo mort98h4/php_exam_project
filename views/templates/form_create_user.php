@@ -2,7 +2,7 @@
 $roles = _getRoles();
 ?>
 
-<form class="w-full md:w-1/2 flex flex-wrap gap-4">
+<form class="w-full flex flex-wrap gap-4">
     <div class="form-control-full lg:form-control">
         <div class="relative w-full">
             <input class="dynamic-input" type="text" name="first_name" id="first_name" required minlength="2" maxlength="30" placeholder=" " />

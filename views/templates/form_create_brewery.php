@@ -2,8 +2,8 @@
 require_once __DIR__ . '/../../utils.php';
 ?>
 
-<form class="w-full md:w-1/2 flex flex-wrap gap-4">
-    <div class="form-control-full">
+<form class="w-full flex flex-wrap gap-4">
+    <div class="form-control-full lg:form-control">
         <div class="relative w-full">
             <input class="dynamic-input" type="text" name="name" id="brewery_name" required minlength="<?= _STR_MIN_LEN ?>" maxlength="<?= _STR_MAX_LEN ?>" placeholder=" "/>
             <div class="label-container">

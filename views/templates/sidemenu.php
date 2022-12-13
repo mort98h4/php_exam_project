@@ -1,4 +1,10 @@
-<aside class="col-span-2 sticky top-12 max-h-screen">
+<aside id="side_menu" class="sidemenu pt-4">
+    <div class="w-full flex justify-end items-center">
+        <button class="burger" data-target="#side_menu" onclick="toggleBurger()">
+            <i class="fa-solid fa-ellipsis pointer-events-none"></i>
+            <i class="fa-sharp fa-solid fa-xmark "></i>
+        </button>
+    </div>
     <nav>
         <div class="mb-4">
             <a href="#allUsers" class="nav-link text-lg">Users</a>

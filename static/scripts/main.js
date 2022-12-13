@@ -101,8 +101,10 @@ function formatDate(timestamp) {
 }
 
 function toggleBurger() {
-    document.querySelector(".burger").classList.toggle('show');
-    document.querySelector(".menu").classList.toggle('show');
+    const target = event.target;
+    console.log(target);
+    target.classList.toggle('show');
+    document.querySelector(target.dataset.target).classList.toggle('show');
 }
 
 function toggleLabel() {
