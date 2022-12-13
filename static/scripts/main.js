@@ -216,6 +216,9 @@ async function getBeer(id, modalId) {
     form.price.value = beer.beer_price;
     form.description.value = beer.beer_description;
     form.beer_image.value = beer.beer_image;
+    form.created_at.value = beer.beer_created_at;
+    form.updated_at.value = beer.beer_updated_at;
+    form.created_by.value = beer.beer_created_by;
 
     if (beer.beer_image) {
         const preview = form.querySelector('.preview');

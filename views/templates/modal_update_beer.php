@@ -14,6 +14,9 @@ $breweries = _getBreweries();
         </header>
         <form class="w-full flex flex-wrap gap-4">
             <input type="hidden" name="beer_id" value="" />
+            <input type="hidden" name="created_by" value="" />
+            <input type="hidden" name="created_at" value="" />
+            <input type="hidden" name="updated_at" value="" />
             <div class="flex flex-wrap w-full gap-4">
                 <div class="form-control-full md:form-control">
                     <div class="relative w-full">
