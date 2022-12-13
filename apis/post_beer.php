@@ -73,7 +73,7 @@ try {
     }
 
     if (!$createdBy === intval($_SESSION['user_id'])) {
-        _respond('Unauthorized attempt 3.', 401);
+        _respond('Unauthorized attempt.', 401);
     }
 
 } catch(Exception $ex) {
