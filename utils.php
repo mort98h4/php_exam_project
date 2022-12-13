@@ -93,6 +93,10 @@ function _validateImage($image) {
     return $rndImgName;
 }
 
+function _deleteImage(string $image): bool {
+    return unlink(_IMG_TARGET_DIR . $image);
+}
+
 function _getTapwall(): array {
     try{
         $db = new DB;
