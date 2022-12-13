@@ -54,23 +54,40 @@ function toggleDeleteModal() {
 
 function emptyModalForm(modalId, form) {
     const modal = document.querySelector(modalId);
+    const inputs = form.querySelectorAll('input');
+    const selects = form.querySelectorAll('select');
+    const textareas = form.querySelectorAll('textarea');
+    const imgPreview = form.querySelector('.preview');
+    
     if (modal.classList.contains('show')) {
         modal.classList.toggle('show');
     }
-    form.querySelectorAll('input').forEach(input => {
-        input.value = '';
-    });
-    form.querySelectorAll('select').forEach(select => {
-        select.value = '';
-        select.classList.remove('valid');
-    });
-    form.querySelector('textarea').value = '';
-    const imgPreview = form.querySelector('.preview');
+
+    if (inputs) {
+        inputs.forEach(input => {
+            input.value = '';
+        });
+    }
+
+    if (selects) {
+        selects.forEach(select => {
+            select.value = '';
+            select.classList.remove('valid');
+        });
+    }
+
+    if (textareas) {
+        textareas.forEach(textarea => {
+            textarea.value = '';
+        });
+    }
+    
     if (imgPreview) {
         form.querySelector('img').src = '';
         form.querySelector('img').alt = '';
         imgPreview.classList.add('hidden');
     }
+
     form.querySelector('.error-container').classList.add('hidden');
     form.querySelector('.error-container span').textContent = '';
 }
@@ -198,10 +215,7 @@ async function deleteUser(form, url) {
     }
 
     document.querySelector(`#user_${userId}`).remove();
-    form.querySelector('.error-container').classList.add('hidden');
-    form.querySelector('.error-container span').textContent = '';
-    form.confirm.value = '';
-    document.querySelector('#delete_user_modal').classList.toggle('show');
+    emptyModalForm('#delete_user_modal', form);
 }
 
 async function getBrewery(id, modalId) {
@@ -266,7 +280,7 @@ async function deleteBrewery(form, url) {
     });
     if (response.status === 204) {
         form.querySelector('.error-container').classList.remove('hidden');
-        form.querySelector('.error-container span').textContent = 'User does not exist.';
+        form.querySelector('.error-container span').textContent = 'Brewery does not exist.';
         return;
     }
     if (response.status !== 200) {
@@ -277,10 +291,7 @@ async function deleteBrewery(form, url) {
     }
 
     document.querySelector(`#brewery_${breweryId}`).remove();
-    form.querySelector('.error-container').classList.add('hidden');
-    form.querySelector('.error-container span').textContent = '';
-    form.confirm.value = '';
-    document.querySelector('#delete_brewery_modal').classList.toggle('show');
+    emptyModalForm('#delete_brewery_modal', form);
 }
 
 async function postSession(form, url) {
