@@ -65,7 +65,7 @@ $breweries = _getBreweries();
                     <label class="dynamic-label" for="beer_ebc">EBC</label>
                 </div>
             </div>
-        <span class="hint">Please type a value of min. 0 and max. 150.</span>
+            <span class="hint">Please type a value of min. 0 and max. 150.</span>
         </div>
         <div class="form-control">
             <div class="relative w-full">
@@ -104,9 +104,9 @@ $breweries = _getBreweries();
                     <label class="dynamic-label" for="beer_description">Description</label>
                 </div>
             </div>
-        <span class="hint"></span>
+            <span class="hint"></span>
         </div>
-        <div class="form-control">
+        <div class="form-control-66">
             <div class="relative w-full">
                 <label for="beer_image" class="image-label">
                     <i class="fa-sharp fa-solid fa-image"></i>
@@ -116,7 +116,7 @@ $breweries = _getBreweries();
             </div>
             <span class="hint">Only .png, .jpg, .jpeg allowed.</span>
         </div>
-        <div class="form-control">
+        <div class="form-control-33">
             <div class="preview hidden relative" data-input-id="#beer_image">
                 <img src="" />
                 <button type="button" role="button" onclick="removePreviewImage()" data-input-id="#beer_image" class="btn-icon absolute top-0 right-0 cursor-pointer">
