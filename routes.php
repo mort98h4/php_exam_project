@@ -34,6 +34,7 @@ post('/beer/$beer_id', 'apis/update_beer');
 delete('/logout/$user_id', 'apis/delete_session');
 delete('/user/$user_id', 'apis/delete_user');
 delete('/brewery/$brewery_id', 'apis/delete_brewery');
+delete('/beer/$beer_id', 'apis/delete_beer');
 
 
 // For GET or POST
