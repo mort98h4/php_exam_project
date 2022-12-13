@@ -32,6 +32,8 @@ function toggleUpdateModal() {
         getUser(id, modalId);
     } else if (table === 'breweries') {
         getBrewery(id, modalId);
+    } else {
+        getBeer(id, modalId);
     }
 }
 
@@ -68,9 +70,7 @@ function toggleLabel() {
 
 function addPreviewImage() {
     const input = event.target;
-    console.log(input.id);
     const preview = document.querySelector(`.preview[data-input-id='#${input.id}']`);
-    console.log(preview);
     const image = input.files[0];
     preview.querySelector('img').src = URL.createObjectURL(image);
     preview.classList.remove('hidden');
@@ -83,11 +83,10 @@ function removePreviewImage() {
     preview.querySelector('img').src = "";
     preview.classList.add('hidden');
 
-    // Might need to create some logic regarding updating images...
-    // const inputHidden = document.querySelector(`[type='hidden'][data-input-id='${inputId}']`)
-    // if (inputHidden) {
-    //     inputHidden.value = "";
-    // }
+    const inputHidden = document.querySelector(`[type='hidden'][data-input-id='${inputId}']`)
+    if (inputHidden) {
+        inputHidden.value = "";
+    }
 }
 
 async function getUser(id, modalId) {
@@ -190,6 +189,39 @@ async function getBrewery(id, modalId) {
     const form = document.querySelector(`${modalId} form`);
     form.brewery_id.value = brewery.brewery_id;
     form.name.value = brewery.brewery_name;
+}
+
+async function getBeer(id, modalId) {
+    const response = await fetch(`/beer/${id}`, {
+        method: 'GET'
+    });
+    if (!response.status === 200) {
+        const error = await response.json();
+        console.log(error.info);
+        return;
+    }
+
+    const beer = await response.json();
+    const form = document.querySelector(`${modalId} form`);
+    form.beer_id.value = beer.beer_id;
+    form.beer_brewery_id.value = beer.beer_brewery_id;
+    form.beer_brewery_id.classList.add('valid');
+    form.name.value = beer.beer_name;
+    form.style.value = beer.beer_style;
+    form.volume.value = beer.beer_volume;
+    form.ibu.value = beer.beer_ibu;
+    form.ebc.value = beer.beer_ebc;
+    form.is_active.value = beer.beer_is_active;
+    form.tapwall_no.value = beer.beer_tapwall_no;
+    form.price.value = beer.beer_price;
+    form.description.value = beer.beer_description;
+    form.beer_image.value = beer.beer_image;
+
+    if (beer.beer_image) {
+        const preview = form.querySelector('.preview');
+        preview.classList.remove('hidden');
+        preview.querySelector('img').src = `public/images/uploads/${beer.beer_image}`;
+    }
 }
 
 async function postBrewery(form, url) {
