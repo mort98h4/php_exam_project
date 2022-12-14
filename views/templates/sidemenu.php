@@ -6,6 +6,7 @@
         </button>
     </div>
     <nav>
+        <?php if ($admin) { ?>
         <div class="mb-4">
             <a href="#allUsers" class="nav-link text-lg">Users</a>
             <ul class="pl-4">
@@ -17,6 +18,7 @@
                 </li>
             </ul>
         </div>
+        <?php } ?>
         <div class="mb-4">
             <a class="nav-link text-lg">Breweries</a>
             <ul class="pl-4">
