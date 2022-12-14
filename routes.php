@@ -13,6 +13,7 @@ get('/', 'views/index.php');
 get('/signup', 'views/sign_up.php');
 get('/tapwall', 'views/tapwall.php');
 get('/admin', 'views/admin.php');
+get('/editor', 'views/editor');
 // get('/10-28/item/$id',                    'views/item');
 // get('/10-28/$gender/shoes/$brand/$size',  'views/product');
 // get('/10-28/test/$word', function($word){
