@@ -625,16 +625,8 @@ video {
   grid-row: span 1 / span 1;
 }
 
-.row-start-5{
-  grid-row-start: 5;
-}
-
 .row-start-2{
   grid-row-start: 2;
-}
-
-.row-end-7{
-  grid-row-end: 7;
 }
 
 .m-4{
@@ -1394,7 +1386,10 @@ textarea.dynamic-textarea:not(:placeholder-shown) ~ .label-container > .dynamic-
     width: 100%;
     --tw-translate-x: 0px;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-    padding: 0px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
 
@@ -1508,8 +1503,8 @@ textarea.dynamic-textarea:not(:placeholder-shown) ~ .label-container > .dynamic-
     grid-column: span 2 / span 2;
   }
 
-  .md\:col-span-6{
-    grid-column: span 6 / span 6;
+  .md\:col-span-4{
+    grid-column: span 4 / span 4;
   }
 
   .md\:col-span-3{
@@ -1518,10 +1513,6 @@ textarea.dynamic-textarea:not(:placeholder-shown) ~ .label-container > .dynamic-
 
   .md\:col-span-1{
     grid-column: span 1 / span 1;
-  }
-
-  .md\:col-span-4{
-    grid-column: span 4 / span 4;
   }
 
   .md\:col-start-4{
@@ -1571,24 +1562,12 @@ textarea.dynamic-textarea:not(:placeholder-shown) ~ .label-container > .dynamic-
 }
 
 @media (min-width: 1024px){
-  .lg\:col-span-7{
-    grid-column: span 7 / span 7;
-  }
-
   .lg\:col-span-8{
     grid-column: span 8 / span 8;
   }
 
   .lg\:w-2\/4{
     width: 50%;
-  }
-
-  .lg\:grid-cols-11{
-    grid-template-columns: repeat(11, minmax(0, 1fr));
-  }
-
-  .lg\:grid-cols-12{
-    grid-template-columns: repeat(12, minmax(0, 1fr));
   }
 
   .lg\:form-control {
@@ -1613,8 +1592,8 @@ textarea.dynamic-textarea:not(:placeholder-shown) ~ .label-container > .dynamic-
     grid-column: span 2 / span 2;
   }
 
-  .xl\:col-span-7{
-    grid-column: span 7 / span 7;
+  .xl\:col-start-4{
+    grid-column-start: 4;
   }
 
   .xl\:col-start-2{
@@ -1623,10 +1602,6 @@ textarea.dynamic-textarea:not(:placeholder-shown) ~ .label-container > .dynamic-
 
   .xl\:col-start-12{
     grid-column-start: 12;
-  }
-
-  .xl\:col-start-4{
-    grid-column-start: 4;
   }
 
   .xl\:col-end-2{

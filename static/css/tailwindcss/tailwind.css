@@ -254,7 +254,7 @@ textarea.dynamic-textarea:not(:placeholder-shown) ~ .label-container > .dynamic-
     transform: translateX(-100%);
 
     /* tablet */
-    @apply sm:w-full sm:sticky sm:translate-x-0 sm:col-span-3 sm:p-0 sm:top-[50px] sm:max-h-screen; 
+    @apply sm:w-full sm:sticky sm:translate-x-0 sm:col-span-3 sm:py-4 sm:px-0 sm:top-[50px] sm:max-h-screen; 
     /* desktop */
     @apply xl:col-span-2;
 }
