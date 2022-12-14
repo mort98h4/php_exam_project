@@ -11,7 +11,7 @@ $breweries = _getBreweries();
 $beers = _getBeers();
 ?>
 
-<div class="container grid grid-cols-12 lg:grid-cols-12 mx-auto mt-12 gap-4 px-4 pb-4 relative">
+<div class="container grid grid-cols-12 mx-auto mt-12 gap-4 px-4 pb-4 relative">
     <?php include_once __DIR__ . '/templates/sidemenu.php'; ?>
     <main class="col-span-12 sm:col-span-9 lg:col-span-8 xl:col-span-6 xl:col-start-4 pt-4">
         <h1 class="text-3xl font-medium ">Admin panel</h1>
