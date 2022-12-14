@@ -18,6 +18,9 @@ if ($validSession) {
             <?php if ($validSession && $admin) { ?>
             <a class="nav-link" href="/admin">Admin</a>
             <?php } ?>
+            <?php if ($validSession && $editor) { ?>
+            <a class="nav-link" href="/editor">Editor</a>
+            <?php } ?>
             <?php if (!$validSession) { ?>
             <a class="nav-link" href="/signup">Sign up</a>
             <a class="nav-link" onclick="toggleModal()" data-target="#login_modal">Log in</a>
