@@ -17,19 +17,19 @@ $beers = _getBeers();
         <h1 class="text-3xl font-medium">Editor panel</h1>
         <section id="allBreweries" class="pt-12">
             <h2 class="text-2xl font-medium mb-4">All breweries</h2>
-
+            <?php include_once __DIR__ . '/templates/all_breweries.php' ; ?>
         </section>
-
+        <hr class="mt-8 opacity-50" />
         <section id="createBrewery" class="pt-12">
             <h2 class="text-2xl font-medium mb-4">Create new brewery</h2>
             <?php include_once __DIR__ . '/templates/form_create_brewery.php'; ?>
         </section>
-
+        <hr class="mt-12 opacity-50" />
         <section id="allBeers" class="pt-12">
             <h2 class="text-2xl font-medium mb-4">All beers</h2>
-
+            <?php include_once __DIR__ . '/templates/all_beers.php'; ?>
         </section>
-
+        <hr class="mt-8 opacity-50" />
         <section id="createBeer" class="pt-12">
             <h2 class="text-2xl font-medium mb-4">Create new beer</h2>
             <?php include_once __DIR__ . '/templates/form_create_beer.php' ?>
