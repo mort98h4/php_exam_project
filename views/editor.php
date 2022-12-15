@@ -42,4 +42,5 @@ include_once __DIR__ . '/templates/modal_update_brewery.php';
 include_once __DIR__ . '/templates/modal_update_beer.php';
 include_once __DIR__ . '/templates/modal_delete_brewery.php';
 include_once __DIR__ . '/templates/modal_delete_beer.php';
+include_once __DIR__ . '/templates/templates.php';
 include_once __DIR__ . '/templates/footer.php';
