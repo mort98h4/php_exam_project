@@ -233,6 +233,11 @@ async function updateUser(form, url) {
         return;
     }
 
+    if (url === `/profile/${form.user_id.value}`) {
+        window.location.href = url;
+        return;
+    }
+
     const user = await response.json();
     const userElem = document.querySelector(`#user_${user.user_id}`);
     userElem.querySelector('h3').textContent = `${user.user_first_name} ${user.user_last_name}`;
