@@ -159,6 +159,48 @@ async function getUser(id, modalId) {
     form.user_role_id.classList.add('valid');
 }
 
+async function getUsers() {
+    const btn = event.target;
+    const offset = btn.dataset.offset;
+
+    const response = await fetch(`/users/${offset}`, {
+        method: 'GET'
+    });
+    if (response.status === 204) {
+        console.log('Stats: ', response.status);
+        btn.classList.add('hidden');
+        return;
+    }
+    if (!response.status === 200) {
+        const error = await response.json();
+        console.log(error);
+        return;
+    }
+    
+    const users = await response.json();
+    if (users) {
+        users.forEach(user => {
+            const tmp = document.querySelector('#userTmp');
+            const clone = tmp.cloneNode(true).content;
+
+            clone.querySelector('article').setAttribute('id', `user_${user.user_id}`);
+            clone.querySelector('h3').textContent = `${user.user_first_name} ${user.user_last_name}`;
+            clone.querySelectorAll('button').forEach(btn => {
+                btn.setAttribute('data-id', user.user_id);
+            });
+            clone.querySelector('.email').textContent = user.user_email;
+            clone.querySelector('.role').textContent = user.role_name;
+
+            document.querySelector('#users').appendChild(clone);
+        });
+    }
+
+    btn.setAttribute('data-offset', parseInt(offset) + 5);
+    if (users.length < 5) {
+        btn.classList.add('hidden');
+    }
+}
+
 async function postUser(form, url) {
     const response = await fetch('/user', {
         method: 'POST',
