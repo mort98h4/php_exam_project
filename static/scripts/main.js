@@ -236,6 +236,46 @@ async function getBrewery(id, modalId) {
     form.name.value = brewery.brewery_name;
 }
 
+async function getBreweries() {
+    const offset = event.target.dataset.offset;
+    const btn = event.target;
+
+    const response = await fetch(`/breweries/${offset}`, {
+        method: 'GET'
+    });
+    if (response.status === 204) {
+        btn.classList.add('hidden');
+        return;
+    }
+    if (!response.status === 200) {
+        const error = await response.json();
+        console.log(error);
+        return;
+    }
+
+    const breweries = await response.json();
+    if (breweries) {
+        breweries.forEach(brewery => {
+            const tmp = document.querySelector('#breweryTmp');
+            const clone = tmp.cloneNode(true).content;
+
+            clone.querySelector('article').setAttribute('id', `brewery_${brewery.brewery_id}`);
+            clone.querySelector('h3').textContent = brewery.brewery_name;
+            clone.querySelectorAll('button').forEach(btn => {
+                btn.setAttribute('data-id', brewery.brewery_id);
+            });
+
+            document.querySelector('#breweries').appendChild(clone);
+        });
+    }
+
+    btn.setAttribute('data-offset', parseInt(offset) + 10);
+    if (breweries.length < 10) {
+        btn.classList.add('hidden');
+    }
+    
+}
+
 async function postBrewery(form, url) {
     const response = await fetch('/brewery', {
         method: 'POST',
