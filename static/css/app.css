@@ -621,6 +621,10 @@ video {
   grid-column: span 6 / span 6;
 }
 
+.col-span-8{
+  grid-column: span 8 / span 8;
+}
+
 .row-span-1{
   grid-row: span 1 / span 1;
 }
@@ -666,6 +670,10 @@ video {
 
 .mt-8{
   margin-top: 2rem;
+}
+
+.ml-auto{
+  margin-left: auto;
 }
 
 .flex{
@@ -728,12 +736,24 @@ video {
   flex-wrap: wrap;
 }
 
+.place-items-end{
+  place-items: end;
+}
+
 .content-center{
   align-content: center;
 }
 
+.content-end{
+  align-content: flex-end;
+}
+
 .items-start{
   align-items: flex-start;
+}
+
+.items-end{
+  align-items: flex-end;
 }
 
 .items-center{
@@ -752,12 +772,20 @@ video {
   justify-content: space-between;
 }
 
+.justify-items-end{
+  justify-items: end;
+}
+
 .gap-4{
   gap: 1rem;
 }
 
 .gap-2{
   gap: 0.5rem;
+}
+
+.self-end{
+  align-self: flex-end;
 }
 
 .self-center{
@@ -856,8 +884,16 @@ video {
   padding-left: 1rem;
 }
 
+.pt-8{
+  padding-top: 2rem;
+}
+
 .text-center{
   text-align: center;
+}
+
+.text-right{
+  text-align: right;
 }
 
 .text-3xl{
@@ -883,6 +919,46 @@ video {
 .text-lg{
   font-size: 1.125rem;
   line-height: 1.75rem;
+}
+
+.text-4xl{
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text-9xl{
+  font-size: 8rem;
+  line-height: 1;
+}
+
+.text-base{
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-5xl{
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.text-6xl{
+  font-size: 3.75rem;
+  line-height: 1;
+}
+
+.text-7xl{
+  font-size: 4.5rem;
+  line-height: 1;
+}
+
+.text-8xl{
+  font-size: 6rem;
+  line-height: 1;
+}
+
+.text-xs{
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .font-medium{
@@ -1565,6 +1641,21 @@ textarea.dynamic-textarea:not(:placeholder-shown) ~ .label-container > .dynamic-
     margin-right: 0px;
   }
 
+  .md\:text-9xl{
+    font-size: 8rem;
+    line-height: 1;
+  }
+
+  .md\:text-8xl{
+    font-size: 6rem;
+    line-height: 1;
+  }
+
+  .md\:text-sm{
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
   .md\:form-control {
     width: calc(50% - .5rem);
   }
@@ -1575,8 +1666,17 @@ textarea.dynamic-textarea:not(:placeholder-shown) ~ .label-container > .dynamic-
     grid-column: span 8 / span 8;
   }
 
+  .lg\:col-span-4{
+    grid-column: span 4 / span 4;
+  }
+
   .lg\:w-2\/4{
     width: 50%;
+  }
+
+  .lg\:text-9xl{
+    font-size: 8rem;
+    line-height: 1;
   }
 
   .lg\:form-control {
