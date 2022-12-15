@@ -237,8 +237,8 @@ async function getBrewery(id, modalId) {
 }
 
 async function getBreweries() {
-    const offset = event.target.dataset.offset;
     const btn = event.target;
+    const offset = btn.dataset.offset;
 
     const response = await fetch(`/breweries/${offset}`, {
         method: 'GET'
@@ -385,6 +385,65 @@ async function getBeer(id, modalId) {
         const preview = form.querySelector('.preview');
         preview.classList.remove('hidden');
         preview.querySelector('img').src = `public/images/uploads/${beer.beer_image}`;
+    }
+}
+
+async function getBeers() {
+    const btn = event.target;
+    const offset = btn.dataset.offset;
+
+    const response = await fetch(`/beers/${offset}`, {
+        method: 'GET'
+    });
+    if (response.status === 204) {
+        console.log('Status: ', response.status);
+        btn.classList.add('hidden');
+        return;
+    }
+    if (!response.status === 200) {
+        const error = await response.json();
+        console.log(error);
+        return;
+    }
+
+    const beers = await response.json();
+    console.log(beers);
+    if (beers) {
+        beers.forEach(beer => {
+            const tmp = document.querySelector('#beerTmp');
+            const clone = tmp.cloneNode(true).content;
+
+            clone.querySelector('article').setAttribute('id', `beer_${beer.beer_id}`);
+            clone.querySelector('h3').textContent = beer.beer_name;
+            clone.querySelectorAll('button').forEach(btn => {
+                btn.setAttribute('data-id', beer.beer_id);
+            });
+            clone.querySelector('.beerBrewery').textContent = beer.brewery_name;
+            clone.querySelector('.style').textContent = beer.beer_style;
+            clone.querySelector('.ibu').textContent = parseInt(beer.beer_ibu) ? beer.beer_ibu : '-';
+            clone.querySelector('.ebc').textContent = parseInt(beer.beer_ebc) ? beer.beer_ebc : '-';
+            clone.querySelector('.volume').textContent = beer.beer_volume + '%';
+            clone.querySelector('.price').textContent = beer.beer_price + ' DKK';
+            clone.querySelector('.isActive').textContent = parseInt(beer.beer_is_active) ? 'Yes' : 'No';
+            clone.querySelector('.tapwallNo').textContent = parseInt(beer.beer_tapwall_no) ? beer.beer_tapwall_no : '-';
+            clone.querySelector('.description').textContent = beer.beer_description ? beer.beer_description : '-';
+            clone.querySelector('.createdAt').textContent = formatDate(beer.beer_created_at);
+            clone.querySelector('.updatedAt').textContent = parseInt(beer.beer_updated_at) ? formatDate(beer.beer_updated_at) : '-';
+
+            if (!beer.beer_image) {
+                clone.querySelector('img').classList.add('hidden');
+            } else {
+                clone.querySelector('img').src = `./public/images/uploads/${beer.beer_image}`;
+                clone.querySelector('img').alt = `${beer.brewery_name} ${beer.beer_name}`;
+            }
+
+            document.querySelector('#beers').appendChild(clone);
+        });
+    }
+
+    btn.setAttribute('data-offset', parseInt(offset) + 5);
+    if (beers.length < 5) {
+        btn.classList.add('hidden');
     }
 }
 
