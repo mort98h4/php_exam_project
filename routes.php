@@ -33,6 +33,7 @@ post('/login', 'apis/post_session');
 post('/brewery', 'apis/post_brewery');
 post('/beer', 'apis/post_beer');
 post('/user/$user_id', 'apis/update_user');
+post('/password/$user_id', 'apis/update_password');
 post('/brewery/$brewery_id', 'apis/update_brewery');
 post('/beer/$beer_id', 'apis/update_beer');
 delete('/logout/$user_id', 'apis/delete_session');
