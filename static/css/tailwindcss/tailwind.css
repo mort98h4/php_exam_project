@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@300;400;500&family=Press+Start+2P&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -15,6 +15,62 @@
 
     .form-control-33 {
         width: calc(33.33% - .5rem);
+    }
+
+    .font-pixel {
+        font-family: 'Press Start 2P', sans-serif;
+    }
+
+    .text-2xs {
+        font-size: .6rem;
+    }
+
+    .bg-yellow {
+        background-color: yellow;
+    }
+
+    .bg-cyan {
+        background-color: cyan;
+    }
+
+    .bg-green {
+        background-color: greenyellow;
+    }
+    
+    .bg-magenta {
+        background-color: magenta;
+    }
+
+    .bg-red {
+        background-color: red;
+    }
+
+    .bg-blue {
+        background-color: blue;
+    }
+
+    .text-yellow {
+        color: yellow;
+    }
+
+    .text-cyan {
+        color: cyan;
+    }
+
+    .text-green {
+        color: greenyellow;
+    }
+    
+    .text-magenta {
+        color: magenta;
+    }
+
+    .text-red {
+        color: red;
+    }
+
+    .text-blue {
+        color: blue;
     }
 }
 
@@ -274,7 +330,7 @@ textarea.dynamic-textarea:not(:placeholder-shown) ~ .label-container > .dynamic-
 }
 
 .tapwall {
-    @apply grid w-full grid-cols-12 border border-white;
+    @apply col-span-12 lg:col-start-2 lg:col-end-12 grid grid-cols-12 border border-white uppercase;
 }
 
 .tapwall .row {
@@ -282,7 +338,7 @@ textarea.dynamic-textarea:not(:placeholder-shown) ~ .label-container > .dynamic-
 }
 
 .tapwall .row .col-span-1, .tapwall .row .col-span-2, .tapwall .row .col-span-3 {
-    @apply p-2 h-full flex items-center justify-center;
+    @apply px-2 py-4 h-full flex items-center justify-center;
 }
 
 .tapwall .row .col-span-1:not(:last-child), .tapwall .row .col-span-2:not(:last-child), .tapwall .row .col-span-3:not(:last-child) {
