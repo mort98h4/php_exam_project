@@ -112,12 +112,16 @@ function _getTapwall(): array {
     }
 }
 
-function _getBreweries(): array {
+function _getBreweries(bool $allBreweries): array {
     try {
         $db = new DB;
         $db = $db->connect();
 
-        $query = $db->prepare('SELECT * FROM breweries ORDER BY brewery_name LIMIT 5 OFFSET 0');
+        if ($allBreweries) {
+            $query = $db->prepare('SELECT * FROM breweries ORDER BY brewery_name');
+        } else {
+            $query = $db->prepare('SELECT * FROM breweries ORDER BY brewery_name LIMIT 5 OFFSET 0');
+        }
         $query->execute();
 
         $breweries = $query->fetchAll();
