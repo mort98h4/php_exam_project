@@ -21,8 +21,8 @@ get('/editor', 'views/editor');
 // });
 
 // APIS
-get('/users', 'apis/get_users');
 get('/user/$user_id', 'apis/get_user');
+get('/users/$offset', 'apis/get_users');
 get('/brewery/$brewery_id', 'apis/get_brewery');
 get('/breweries/$offset', 'apis/get_breweries');
 get('/beer/$beer_id', 'apis/get_beer');
