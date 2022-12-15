@@ -10,20 +10,33 @@ if (($_SESSION['user_id'] !== $user_id) && (intval($_SESSION['user_role']) !== 1
 try {
     $db = new DB;
     $db = $db->connect();
+    $db->beginTransaction();
 
     $query = $db->prepare('DELETE FROM users WHERE user_id = :user_id');
     $query->bindValue(':user_id', $user_id);
     $query->execute();
 
     if ($query->rowCount() == 0) {
+        $db->rollBack();
         _respond('', 204);
     }
 
     if ($_SESSION['user_id'] == $user_id) {
+        $query = $db->prepare('DELETE FROM sessions WHERE session_id = :session_id');
+        $query->bindValue(':session_id', $_SESSION['session_id']);
+        $query->execute();
+
+        if ($query->rowCount() == 0) {
+            $db->rollBack();
+            _respond('', 204);
+        }
+
         session_destroy();
     }
 
+    $db->commit();
     _respond('User deleted.', 200);
 } catch(Exception $ex) {
+    $db->rollBack();
     _respond('Server error.', 500);
 }
