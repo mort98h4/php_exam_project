@@ -11,7 +11,7 @@ try {
     $db = new DB;
     $db = $db->connect();
 
-    $query = $db->prepare('SELECT * FROM beers_and_breweries ORDER BY beer_created_at DESC LIMIT 2 OFFSET :offset');
+    $query = $db->prepare('SELECT * FROM beers_and_breweries ORDER BY beer_created_at DESC LIMIT 5 OFFSET :offset');
     $query->bindValue(':offset', $offset, PDO::PARAM_INT);
     $query->execute();
 
