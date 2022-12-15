@@ -20,7 +20,7 @@ $breweries = _getBreweries(true);
             <div class="flex flex-wrap w-full gap-4">
                 <div class="form-control-full md:form-control">
                     <div class="relative w-full">
-                        <select onchange="toggleLabel()" class="dynamic-select" id="beer_brewery_id" name="brewery_id" required>
+                        <select onchange="toggleLabel()" class="dynamic-select" id="update_beer_brewery_id" name="brewery_id" required>
                             <option value=""></option>
                             <?php foreach($breweries as $brewery) { ?>
                             <option value="<?= out($brewery['brewery_id']) ?>">
@@ -29,110 +29,110 @@ $breweries = _getBreweries(true);
                             <?php } ?>
                         </select>
                         <div class="label-container">
-                            <label class="dynamic-label" for="beer_brewery_id">Brewery</label>
+                            <label class="dynamic-label" for="update_beer_brewery_id">Brewery</label>
                         </div>
                     </div>
                     <span class="hint">Please select a brewery.</span>
                 </div>
                 <div class="form-control-full md:form-control">
                     <div class="relative w-full">
-                        <input class="dynamic-input" type="text" id="beer_name" name="name" placeholder=" " required minlength="<?= _STR_MIN_LEN ?>" maxlength="<?= _STR_MAX_LEN ?>"/>
+                        <input class="dynamic-input" type="text" id="update_beer_name" name="name" placeholder=" " required minlength="<?= _STR_MIN_LEN ?>" maxlength="<?= _STR_MAX_LEN ?>"/>
                         <div class="label-container">
-                            <label class="dynamic-label" for="beer_name">Name</label>
+                            <label class="dynamic-label" for="update_beer_name">Name</label>
                         </div>
                     </div>
                     <span class="hint">Please type a name between 2 and 30 characters.</span>
                 </div>
                 <div class="form-control-full md:form-control">
                     <div class="relative w-full">
-                        <input class="dynamic-input" type="text" id="beer_style" name="style" placeholder=" " required minlength="<?= _STR_MIN_LEN ?>" maxlength="<?= _STR_MAX_LEN ?>"/>
+                        <input class="dynamic-input" type="text" id="update_beer_style" name="style" placeholder=" " required minlength="<?= _STR_MIN_LEN ?>" maxlength="<?= _STR_MAX_LEN ?>"/>
                         <div class="label-container">
-                            <label class="dynamic-label" for="beer_style">Style</label>
+                            <label class="dynamic-label" for="update_beer_style">Style</label>
                         </div>
                     </div>
                     <span class="hint">Please type a style between 2 and 30 characters.</span>
                 </div>
                 <div class="form-control-full md:form-control">
                     <div class="relative w-full">
-                        <input class="dynamic-input" type="number" id="beer_volume" name="volume" placeholder=" " required min="0" step=".1" />
+                        <input class="dynamic-input" type="number" id="update_beer_volume" name="volume" placeholder=" " required min="0" step=".1" />
                         <div class="label-container">
-                            <label class="dynamic-label" for="beer_volume">Volume</label>
+                            <label class="dynamic-label" for="update_beer_volume">Volume</label>
                         </div>
                     </div>
                     <span class="hint">Please type a value of min. 0.</span>
                 </div>
                 <div class="form-control-full md:form-control">
                     <div class="relative w-full">
-                        <input class="dynamic-input" type="number" id="beer_ibu" name="ibu" placeholder=" " required min="0" max="182" />
+                        <input class="dynamic-input" type="number" id="update_beer_ibu" name="ibu" placeholder=" " required min="0" max="182" />
                         <div class="label-container">
-                            <label class="dynamic-label" for="beer_ibu">IBU</label>
+                            <label class="dynamic-label" for="update_beer_ibu">IBU</label>
                         </div>
                     </div>
                     <span class="hint">Please type a value of min. 0 and max. 182.</span>
                 </div>
                 <div class="form-control-full md:form-control">
                     <div class="relative w-full">
-                        <input class="dynamic-input" type="number" id="beer_ebc" name="ebc" placeholder=" " required min="0" max="150" />
+                        <input class="dynamic-input" type="number" id="update_beer_ebc" name="ebc" placeholder=" " required min="0" max="150" />
                         <div class="label-container">
-                            <label class="dynamic-label" for="beer_ebc">EBC</label>
+                            <label class="dynamic-label" for="update_beer_ebc">EBC</label>
                         </div>
                     </div>
                     <span class="hint">Please type a value of min. 0 and max. 150.</span>
                 </div>
                 <div class="form-control-full md:form-control">
                     <div class="relative w-full">
-                        <select class="dynamic-select valid" id="beer_is_active" name="is_active" required>
+                        <select class="dynamic-select valid" id="update_beer_is_active" name="is_active" required>
                             <option value="0">No</option>
                             <option value="1">Yes</option>
                         </select>
                         <div class="label-container">
-                            <label class="dynamic-label" for="beer_is_active">Active</label>
+                            <label class="dynamic-label" for="update_beer_is_active">Active</label>
                         </div>
                     </div>
                     <span class="hint">Determines whether the beer should be displayed on the tapwall.</span>
                 </div>
                 <div class="form-control-full md:form-control">
                     <div class="relative w-full">
-                        <input class="dynamic-input" type="number" id="beer_tapwall_no" name="tapwall_no" placeholder=" " required min="0" max="29" />
+                        <input class="dynamic-input" type="number" id="update_beer_tapwall_no" name="tapwall_no" placeholder=" " required min="0" max="29" />
                         <div class="label-container">
-                            <label class="dynamic-label" for="beer_tapwall_no">Tapwall no.</label>
+                            <label class="dynamic-label" for="update_beer_tapwall_no">Tapwall no.</label>
                         </div>
                     </div>
                     <span class="hint">Please type a value of min. 0 and max. 29.</span>
                 </div>
                 <div class="form-control-full md:form-control">
                     <div class="relative w-full">
-                        <input class="dynamic-input" type="number" id="beer_price" name="price" placeholder=" " required min="0" step=".1" />
+                        <input class="dynamic-input" type="number" id="update_beer_price" name="price" placeholder=" " required min="0" step=".1" />
                         <div class="label-container">
-                            <label class="dynamic-label" for="beer_price">Price</label>
+                            <label class="dynamic-label" for="update_beer_price">Price</label>
                         </div>
                     </div>
                     <span class="hint">Please typa a value of min. 0.</span>
                 </div>
                 <div class="form-control-full">
                     <div class="relative w-full">
-                        <textarea class="dynamic-textarea" id="beer_description" name="description" placeholder=" "></textarea>
+                        <textarea class="dynamic-textarea" id="update_beer_description" name="description" placeholder=" "></textarea>
                         <div class="label-container">
-                            <label class="dynamic-label" for="beer_description">Description</label>
+                            <label class="dynamic-label" for="update_beer_description">Description</label>
                         </div>
                     </div>
                     <span class="hint"></span>
                 </div>
                 <div class="form-control-66">
                     <div class="relative w-full">
-                        <input type="hidden" id="beer_image" name="beer_image" data-input-id="#beer_image_update" /> 
-                        <label for="beer_image_update" class="image-label">
+                        <input type="hidden" id="update_beer_image" name="update_beer_image" data-input-id="#update_beer_image_update" /> 
+                        <label for="update_beer_image_update" class="image-label">
                             <i class="fa-sharp fa-solid fa-image"></i>
                             <span>Upload photo</span>
                         </label>
-                        <input onchange="addPreviewImage()" class="" type="file" id="beer_image_update" name="image" accept="image/png, image/jpg, image/jpeg" />
+                        <input onchange="addPreviewImage()" class="" type="file" id="update_beer_image_update" name="image" accept="image/png, image/jpg, image/jpeg" />
                     </div>
                     <span class="hint">Only .png, .jpg, .jpeg allowed.</span>
                 </div>
                 <div class="form-control-33">
-                    <div class="preview hidden relative" data-input-id="#beer_image_update">
+                    <div class="preview hidden relative" data-input-id="#update_beer_image_update">
                         <img src="" />
-                        <button type="button" role="button" onclick="removePreviewImage()" data-input-id="#beer_image_update" class="btn-icon absolute top-0 right-0 cursor-pointer">
+                        <button type="button" role="button" onclick="removePreviewImage()" data-input-id="#update_beer_image_update" class="btn-icon absolute top-0 right-0 cursor-pointer">
                             <i class="fa-sharp fa-solid fa-xmark pointer-events-none text-2xl"></i>
                         </button>
                     </div>
