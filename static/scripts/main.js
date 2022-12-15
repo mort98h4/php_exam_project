@@ -434,8 +434,8 @@ async function getBeer(id, modalId) {
     const beer = await response.json();
     const form = document.querySelector(`${modalId} form`);
     form.beer_id.value = beer.beer_id;
-    form.beer_brewery_id.value = beer.beer_brewery_id;
-    form.beer_brewery_id.classList.add('valid');
+    form.brewery_id.value = beer.beer_brewery_id;
+    form.brewery_id.classList.add('valid');
     form.name.value = beer.beer_name;
     form.style.value = beer.beer_style;
     form.volume.value = beer.beer_volume;
