@@ -5,7 +5,7 @@ require_once __DIR__ . '/../classes/DBConnection.php';
 $validSession = _validateSession($_SESSION);
 if (!$validSession) _respond('Unauthorized attempt.', 401);
 if (!is_numeric($user_id)) _respond('Invalid user id.', 400);
-if (!in_array($_SESSION['user_role'], ['1', '2'])) _respond('Unauthorized attempt.', 401);
+if (($_SESSION['user_id'] !== $user_id) && (intval($_SESSION['user_role']) !== 1)) _respond('Unauthorized attempt.', 401);
 
 try {
     $db = new DB;
@@ -21,9 +21,7 @@ try {
         _respond('User does not exist.', 400);
     }
 
-    header('Content-Type: application/json');
-    http_response_code(200);
-    echo json_encode($user);
+    _respond($user, 200);
 } catch(Exception $ex) {
     _respond($ex, 500);
 }
