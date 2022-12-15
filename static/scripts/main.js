@@ -269,8 +269,8 @@ async function getBreweries() {
         });
     }
 
-    btn.setAttribute('data-offset', parseInt(offset) + 10);
-    if (breweries.length < 10) {
+    btn.setAttribute('data-offset', parseInt(offset) + 5);
+    if (breweries.length < 5) {
         btn.classList.add('hidden');
     }
     

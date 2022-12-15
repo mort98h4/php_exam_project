@@ -12,7 +12,7 @@ try {
     $db = $db->connect();
 
     $offset = intval($offset);
-    $query = $db->prepare('SELECT * FROM breweries ORDER BY brewery_name LIMIT 10 OFFSET :offset');
+    $query = $db->prepare('SELECT * FROM breweries ORDER BY brewery_name LIMIT 5 OFFSET :offset');
     $query->bindValue(':offset', $offset, PDO::PARAM_INT);
     $query->execute();
 
