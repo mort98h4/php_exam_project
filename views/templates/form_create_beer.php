@@ -129,7 +129,11 @@ $breweries = _getBreweries();
             <div class="error-container text-center w-full hidden">
                 <span class="text-red-600">testing</span>
             </div>
+            <?php if ($admin) { ?> 
             <button class="btn" type="submit" onclick="formValidation(postBeer, '/admin')">Create beer</button>
+            <?php } else if ($editor) { ?> 
+            <button class="btn" type="submit" onclick="formValidation(postBeer, '/editor')">Create beer</button>
+            <?php } ?>
         </div>
     </form>
 

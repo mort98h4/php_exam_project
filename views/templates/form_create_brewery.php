@@ -16,6 +16,10 @@ require_once __DIR__ . '/../../utils.php';
         <div class="error-container text-center w-full hidden">
             <span class="text-red-600"></span>
         </div>
+        <?php if ($admin) { ?> 
         <button class="btn" type="submit" onclick="formValidation(postBrewery, '/admin')">Create brewery</button>
+        <?php } else if ($editor) { ?> 
+        <button class="btn" type="submit" onclick="formValidation(postBrewery, '/editor')">Create brewery</button>
+        <?php } ?>
     </div>
 </form>
