@@ -1,6 +1,6 @@
 <?php
 include_once __DIR__ . '/../../utils.php';
-$breweries = _getBreweries();
+$breweries = _getBreweries(true);
 ?>
 
 <section id="update_beer_modal" class="modal">
