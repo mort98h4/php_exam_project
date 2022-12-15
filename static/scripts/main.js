@@ -102,7 +102,6 @@ function formatDate(timestamp) {
 
 function toggleBurger() {
     const target = event.target;
-    console.log(target);
     target.classList.toggle('show');
     document.querySelector(target.dataset.target).classList.toggle('show');
 }
@@ -167,7 +166,6 @@ async function getUsers() {
         method: 'GET'
     });
     if (response.status === 204) {
-        console.log('Stats: ', response.status);
         btn.classList.add('hidden');
         return;
     }
@@ -298,7 +296,7 @@ async function getBrewery(id, modalId) {
     });
     if (!response.status === 200) {
         const error = await response.json();
-        console.log(error.info);
+        console.log(error);
         return;
     }
 
@@ -429,7 +427,7 @@ async function getBeer(id, modalId) {
     });
     if (!response.status === 200) {
         const error = await response.json();
-        console.log(error.info);
+        console.log(error);
         return;
     }
 
@@ -468,7 +466,6 @@ async function getBeers() {
         method: 'GET'
     });
     if (response.status === 204) {
-        console.log('Status: ', response.status);
         btn.classList.add('hidden');
         return;
     }
@@ -479,7 +476,6 @@ async function getBeers() {
     }
 
     const beers = await response.json();
-    console.log(beers);
     if (beers) {
         beers.forEach(beer => {
             const tmp = document.querySelector('#beerTmp');
@@ -531,7 +527,6 @@ async function postBeer(form, url) {
     });
     if (response.status !== 201) {
         const error = await response.json();
-        console.log(error);
         form.querySelector('.error-container').classList.remove('hidden');
         form.querySelector('.error-container span').textContent = error.info;
         return;
@@ -558,7 +553,6 @@ async function updateBeer(form, url) {
     }
 
     const beer = await response.json();
-    console.log(beer);
     const beerElem = document.querySelector(`#beer_${beer.beer_id}`);
 
     beerElem.querySelector('h3').textContent = beer.beer_name;
@@ -606,7 +600,6 @@ async function deleteBeer(form, url) {
 
 async function deleteSession() {
     const userId = event.target.dataset.id;
-    console.log(userId);
     const response = await fetch(`/logout/${userId}`, {
         method: 'DELETE',
     });
