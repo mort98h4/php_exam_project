@@ -20,7 +20,7 @@ try {
     if (!$user->setEmail($_POST['email'])) {
         _respond('Invalid e-mail.', 400);
     }
-    if (!$user->setRole(intval($_POST['role_id']))) {
+    if ((isset($_POST['role_id'])) && (!$user->setRole(intval($_POST['role_id'])))) {
         _respond('Invalid role id.', 400);
     }
 } catch (Exception $ex) {
@@ -57,7 +57,7 @@ try {
     );
     $query->bindValue(
         ':role_id',
-        ($user->role() != $dbUser['role_id']) ? $user->role() : $dbUser['role_id']
+        (($user->role() != $dbUser['role_id']) && ($user->role() != '')) ? $user->role() : $dbUser['role_id']
     );
     $query->bindValue(':user_id', $user_id);
     $query->execute();
@@ -81,9 +81,10 @@ try {
     }
 
     $db->commit();
-    echo json_encode($updatedUser);
+    _respond($updatedUser, 200);
 
 } catch(Exception $ex) {
     $db->rollBack();
+    if (str_contains($ex, 'email')) _respond('Email already exists.', 400);
     _respond('Server error.', 500);
 }
