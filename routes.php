@@ -12,6 +12,7 @@ require_once __DIR__.'/router.php';
 get('/', 'views/index.php');
 get('/signup', 'views/sign_up.php');
 get('/tapwall', 'views/tapwall.php');
+get('/tap/$beer_id', 'views/tap');
 get('/profile/$user_id', 'views/profile');
 get('/admin', 'views/admin.php');
 get('/editor', 'views/editor');
