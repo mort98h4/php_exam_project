@@ -356,3 +356,73 @@ textarea.dynamic-textarea:not(:placeholder-shown) ~ .label-container > .dynamic-
 .user:last-of-type, .brewery:last-of-type, .beer:last-of-type {
     @apply border-b-0;
 }
+
+.frontpage-image {
+    transform: scaleX(-1);
+}
+
+.animate {
+    animation-duration: 2s;
+    animation-name: zap-in;
+    animation-timing-function:cubic-bezier(1, 0, 0, 1);
+}
+
+@keyframes zap-in {
+    0% {
+        opacity: 0;
+        transform: rotate(-2deg);
+    }
+    2% {
+        opacity: 1;
+        transform: rotate(2deg);
+    }
+    5% {
+        opacity: 0;
+        transform: rotate(-2deg);
+    }
+    10% {
+        opacity: .8;
+        transform: rotate(2deg);
+    }
+    13% {
+        opacity: 0;
+        transform: rotate(-2deg);
+    }
+    20% {
+        opacity: .5;
+        transform: rotate(2deg);
+    }
+    25% {
+        opacity: 0;
+        transform: rotate(-2deg);
+    }
+    31% {
+        opacity: 1;
+        transform: rotate(2deg);
+    }
+    35% {
+        opacity: 0;
+        transform: rotate(0deg);
+    }
+    38% {
+        opacity: .8;
+        transform: rotate(1deg);
+    }
+    40% {
+        opacity: .2;
+        transform: rotate(-1deg);
+
+    }
+    45% {
+        opacity: .7;
+        transform: rotate(1deg);
+    }
+    50% {
+        opacity: 0;
+        transform: rotate(0deg);
+
+    }
+    100% {
+        opacity: 1;
+    }
+}
