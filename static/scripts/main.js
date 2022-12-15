@@ -154,8 +154,8 @@ async function getUser(id, modalId) {
     form.first_name.value = user.user_first_name;
     form.last_name.value = user.user_last_name;
     form.email.value = user.user_email;
-    form.user_role_id.value = user.role_id;
-    form.user_role_id.classList.add('valid');
+    form.role_id.value = user.role_id;
+    form.role_id.classList.add('valid');
 }
 
 async function getUsers() {
