@@ -1,5 +1,5 @@
 <?php
-$breweries = _getBreweries();
+$breweries = _getBreweries(true);
 ?>
 
 <?php if ($validSession && ($admin || $editor)) { ?>
