@@ -26,6 +26,7 @@ get('/user/$user_id', 'apis/get_user');
 get('/brewery/$brewery_id', 'apis/get_brewery');
 get('/breweries/$offset', 'apis/get_breweries');
 get('/beer/$beer_id', 'apis/get_beer');
+get('/beers/$offset', 'apis/get_beers');
 post('/user', 'apis/post_user');
 post('/login', 'apis/post_session');
 post('/brewery', 'apis/post_brewery');
