@@ -132,7 +132,7 @@ function _getBeers(): array {
         $db = new DB;
         $db = $db->connect();
 
-        $query = $db->prepare('SELECT * FROM beers_and_breweries');
+        $query = $db->prepare('SELECT * FROM beers_and_breweries ORDER BY beer_created_at DESC LIMIT 2 OFFSET 0');
         $query->execute();
 
         $beers = $query->fetchAll();
