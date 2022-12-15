@@ -131,6 +131,22 @@ function _getBreweries(bool $allBreweries): array {
     }
 }
 
+function _getBeer(string $beerId) {
+    try {
+        $db = new DB;
+        $db = $db->connect();
+
+        $query = $db->prepare('SELECT * FROM beers_and_breweries WHERE beer_id = :beer_id LIMIT 1');
+        $query->bindValue(':beer_id', $beerId);
+        $query->execute();
+
+        $beer = $query->fetch();
+        return $beer;
+    } catch(Exception $ex) {
+        _respond('Server error', 500);
+    }
+}
+
 function _getBeers(): array {
     try {
         $db = new DB;
