@@ -102,7 +102,7 @@ function _getTapwall(): array {
         $db = new DB;
         $db = $db->connect();
     
-        $query = $db->prepare('SELECT * FROM beers_and_breweries WHERE beer_is_active = 1');
+        $query = $db->prepare('SELECT * FROM beers_and_breweries WHERE beer_is_active = 1 ORDER BY beer_tapwall_no ASC LIMIT 29');
         $query->execute();
     
         $beers = $query->fetchAll();
