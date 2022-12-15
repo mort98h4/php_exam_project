@@ -6,9 +6,6 @@ include_once __DIR__ . '/templates/nav.php';
 
 if (!$validSession) _redirect('/');
 if (!$editor) _redirect('/');
-
-$breweries = _getBreweries();
-$beers = _getBeers();
 ?>
 
 <div class="container grid grid-cols-12 mx-auto mt-12 gap-4 px-4 pb-4 relative">
