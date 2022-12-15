@@ -264,6 +264,11 @@ async function deleteUser(form, url) {
         return;
     }
 
+    if (url === `/profile/${userId}`) {
+        window.location.href = url;
+        return;
+    }
+
     document.querySelector(`#user_${userId}`).remove();
     emptyModalForm('#delete_user_modal', form);
 }
