@@ -1,5 +1,4 @@
 <?php
-$breweries = _getBreweries();
 $beers = _getBeers()
 ?>
 
@@ -94,6 +93,6 @@ $beers = _getBeers()
 </div>
 <?php if (count($beers) == 5) { ?>
 <div class="w-full flex justify-center">
-    <button class="btn mb-4" onclick="getBeers()" data-offset="5">Load more</button>
+    <button class="btn my-4" onclick="getBeers()" data-offset="5">Load more</button>
 </div>
 <?php } ?>
