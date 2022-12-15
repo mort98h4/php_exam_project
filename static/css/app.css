@@ -597,6 +597,10 @@ video {
   grid-column: span 1 / span 1;
 }
 
+.col-span-2{
+  grid-column: span 2 / span 2;
+}
+
 .col-span-4{
   grid-column: span 4 / span 4;
 }
@@ -611,10 +615,6 @@ video {
 
 .col-span-3{
   grid-column: span 3 / span 3;
-}
-
-.col-span-2{
-  grid-column: span 2 / span 2;
 }
 
 .col-span-6{
@@ -662,6 +662,10 @@ video {
 
 .mr-2{
   margin-right: 0.5rem;
+}
+
+.mt-8{
+  margin-top: 2rem;
 }
 
 .flex{
@@ -1499,20 +1503,20 @@ textarea.dynamic-textarea:not(:placeholder-shown) ~ .label-container > .dynamic-
     position: relative;
   }
 
-  .md\:col-span-2{
-    grid-column: span 2 / span 2;
-  }
-
-  .md\:col-span-4{
-    grid-column: span 4 / span 4;
-  }
-
   .md\:col-span-3{
     grid-column: span 3 / span 3;
   }
 
   .md\:col-span-1{
     grid-column: span 1 / span 1;
+  }
+
+  .md\:col-span-2{
+    grid-column: span 2 / span 2;
+  }
+
+  .md\:col-span-4{
+    grid-column: span 4 / span 4;
   }
 
   .md\:col-start-4{
