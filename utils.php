@@ -117,7 +117,7 @@ function _getBreweries(): array {
         $db = new DB;
         $db = $db->connect();
 
-        $query = $db->prepare('SELECT * FROM breweries');
+        $query = $db->prepare('SELECT * FROM breweries ORDER BY brewery_name LIMIT 10 OFFSET 0');
         $query->execute();
 
         $breweries = $query->fetchAll();
