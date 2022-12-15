@@ -2,6 +2,7 @@
 $breweries = _getBreweries();
 ?>
 
+<div id="breweries" class="w-full">
 <?php foreach($breweries as $brewery) { ?>
     <article id="brewery_<?= out($brewery['brewery_id']) ?>" class="brewery">
         <header class="flex items-center justify-between">
@@ -17,3 +18,13 @@ $breweries = _getBreweries();
         </header>
     </article>
 <?php } ?>
+</div>
+<?php
+if (count($breweries) == 10) {
+?>
+<div class="w-full flex justify-center">
+    <button class="btn" onclick="getBreweries()" data-offset="10">Load more</button>
+</div>
+<?php
+} 
+?>
