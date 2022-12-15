@@ -268,6 +268,25 @@ async function deleteUser(form, url) {
     emptyModalForm('#delete_user_modal', form);
 }
 
+async function updatePassword(form, url) {
+    const response = await fetch(`/password/${form.id.value}`, {
+        method: 'POST',
+        body: new FormData(form)
+    });
+    const message = await response.json();
+    if (response.status !== 200) {
+        form.querySelector('.error-container .text-red-600').textContent = message.info;
+        form.querySelector('.error-container .text-green-600').textContent = '';
+    } else {
+        form.querySelector('.error-container .text-red-600').textContent = '';
+        form.querySelector('.error-container .text-green-600').textContent = message.info;
+    }
+    form.querySelectorAll('input[type="password"]').forEach(input => {
+        input.value = '';
+    })
+    form.querySelector('.error-container').classList.remove('hidden');
+}
+
 async function getBrewery(id, modalId) {
     const response = await fetch(`/brewery/${id}`, {
         method: 'GET',
