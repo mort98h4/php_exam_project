@@ -120,7 +120,7 @@ $breweries = _getBreweries(true);
                 </div>
                 <div class="form-control-66">
                     <div class="relative w-full">
-                        <input type="hidden" id="update_beer_image" name="update_beer_image" data-input-id="#update_beer_image_update" /> 
+                        <input type="hidden" id="update_beer_image" name="beer_image" data-input-id="#update_beer_image_update" /> 
                         <label for="update_beer_image_update" class="image-label">
                             <i class="fa-sharp fa-solid fa-image"></i>
                             <span>Upload photo</span>
