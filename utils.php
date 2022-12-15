@@ -147,7 +147,7 @@ function _getUsers(): array {
         $db = new DB;
         $db = $db->connect();
 
-        $query = $db->prepare('SELECT * FROM users_and_roles LIMIT 10');
+        $query = $db->prepare('SELECT * FROM users_and_roles ORDER BY user_id ASC LIMIT 5 OFFSET 0');
         $query->execute();
 
         $users = $query->fetchAll();
