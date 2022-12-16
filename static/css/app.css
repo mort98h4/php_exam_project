@@ -1864,6 +1864,18 @@ textarea.dynamic-textarea:not(:placeholder-shown) ~ .label-container > .dynamic-
     width: 50%;
   }
 
+  .lg\:items-center{
+    align-items: center;
+  }
+
+  .lg\:justify-center{
+    justify-content: center;
+  }
+
+  .lg\:p-0{
+    padding: 0px;
+  }
+
   .lg\:text-9xl{
     font-size: 8rem;
     line-height: 1;
