@@ -1540,10 +1540,12 @@ textarea.dynamic-textarea:not(:placeholder-shown) ~ .label-container > .dynamic-
     position: sticky;
     top: 50px;
     grid-column: span 3 / span 3;
+    display: grid;
     max-height: 100vh;
     width: 100%;
     --tw-translate-x: 0px;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    grid-template-columns: repeat(1, minmax(0, 1fr));
     padding-top: 1rem;
     padding-bottom: 1rem;
     padding-left: 0px;
@@ -1739,6 +1741,18 @@ address {
     grid-column-end: 11;
   }
 
+  .sm\:block{
+    display: block;
+  }
+
+  .sm\:flex{
+    display: flex;
+  }
+
+  .sm\:hidden{
+    display: none;
+  }
+
   .sm\:w-1\/2{
     width: 50%;
   }
@@ -1818,12 +1832,12 @@ address {
     margin-right: 0px;
   }
 
-  .md\:mr-0{
-    margin-right: 0px;
-  }
-
   .md\:mb-0{
     margin-bottom: 0px;
+  }
+
+  .md\:mr-0{
+    margin-right: 0px;
   }
 
   .md\:items-center{
@@ -1876,14 +1890,6 @@ address {
     grid-column: span 4 / span 4;
   }
 
-  .lg\:ml-auto{
-    margin-left: auto;
-  }
-
-  .lg\:mr-0{
-    margin-right: 0px;
-  }
-
   .lg\:w-2\/4{
     width: 50%;
   }
@@ -1894,10 +1900,6 @@ address {
 
   .lg\:p-0{
     padding: 0px;
-  }
-
-  .lg\:text-right{
-    text-align: right;
   }
 
   .lg\:text-9xl{

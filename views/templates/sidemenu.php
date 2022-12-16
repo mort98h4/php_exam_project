@@ -1,5 +1,5 @@
 <aside id="side_menu" class="sidemenu pt-4">
-    <div class="w-full flex justify-end items-center">
+    <div class="w-full flex justify-end items-center sm:hidden">
         <button class="burger" data-target="#side_menu" onclick="toggleBurger()">
             <i class="fa-solid fa-ellipsis pointer-events-none"></i>
             <i class="fa-sharp fa-solid fa-xmark "></i>
@@ -42,4 +42,7 @@
             </ul>
         </div>
     </nav>
+    <div class="hidden sm:flex items-center">
+        <img src="/public/images/Mighty-Mild-Ale-illustration-uden-baggrund-e1667389080254-1536x954.png" />
+    </div>
 </aside>
