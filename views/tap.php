@@ -49,7 +49,7 @@ include_once __DIR__ . '/templates/nav.php';
         </article>
         <div class="col-span-4 text-right">
             <!-- <h2 class="font-medium opacity-70 uppercase text-sm">Price</h2> -->
-            <p class="text-7xl lg:text-9xl"><?= out($beer['beer_price']) ?><span class="text-base"> DKK</span></p>
+            <p class="text-7xl lg:text-9xl mb-2"><?= out($beer['beer_price']) ?><span class="text-base"> DKK</span></p>
             <?php if ($beer['beer_image']) { ?> 
                 <img class="ml-auto" src="/public/images/uploads/<?= out($beer['beer_image']) ?>" alt="<?= out($beer['brewery_name']) ?> <?= out($beer['beer_name']) ?>" />
             <?php } ?>

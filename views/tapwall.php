@@ -97,10 +97,14 @@ $beers = _getTapwall();
                             <?= out($beer['brewery_name']) ?>
                             <?php } ?>
                             <?= out($beer['beer_name']) ?>
+                            <?php if ($beer['beer_ebc']) { ?>
                             -
                             EBC: <?= out($beer['beer_ebc']) ?>
+                            <?php } ?>
+                            <?php if ($beer['beer_ibu']) { ?>
                             -
                             IBU: <?= out($beer['beer_ibu']) ?>
+                            <?php } ?>
                             -
                             Alc.: <?= out($beer['beer_volume']) ?>%
                         </div>
