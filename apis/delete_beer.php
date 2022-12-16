@@ -31,5 +31,5 @@ try {
 
     _respond('Beer deleted', 200);
 } catch(Exception $ex) {
-    _respond($ex, 500);
+    _respond('Server error.', 500);
 }

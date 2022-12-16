@@ -24,7 +24,7 @@ try {
         _respond('Invalid role id.', 400);
     }
 } catch (Exception $ex) {
-    _respond($ex, 500);
+    _respond('Server error.', 500);
 }
 
 try {

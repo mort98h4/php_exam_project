@@ -61,5 +61,5 @@ try {
 
 } catch(Exception $ex) {
     $db->rollBack();
-    _respond($ex, 500);
+    _respond('Server error.', 500);
 }
