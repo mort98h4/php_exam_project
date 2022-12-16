@@ -32,7 +32,5 @@ delete('/brewery/$brewery_id', 'apis/delete_brewery');
 delete('/beer/$beer_id', 'apis/delete_beer');
 
 
-// For GET or POST
-// The 404.php which is inside the views folder will be called
-// The 404.php has access to $_GET and $_POST
-// any('/404','views/404.php');
+// Errors
+any('/404','views/404.php');

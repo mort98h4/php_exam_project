@@ -760,6 +760,14 @@ video {
   max-width: 1280px;
 }
 
+.max-w-\[500px\]{
+  max-width: 500px;
+}
+
+.max-w-\[450px\]{
+  max-width: 450px;
+}
+
 .cursor-pointer{
   cursor: pointer;
 }
