@@ -23,7 +23,7 @@ try {
     
     _respond($users, 200);
 } catch(PDOException $ex) {
-    http_response_code(200);
+    http_response_code(500);
     $message = [
         'info'=>'Error in line: ' . __LINE__,
         'ex'=>$ex
